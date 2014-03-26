@@ -57,8 +57,4 @@ Propest::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  as :user do
-  get "/login" => "devise/sessions#new"
-  delete "/logout" => "devise/sessions#destroy"
-end
 end
