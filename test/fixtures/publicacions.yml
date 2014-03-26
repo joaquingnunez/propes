@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pieza: 1
+  direccion: MyString
+  precio: 1
+  bano: 1
+  estacionamiento: false
+  tipo: MyString
+  ciudad: MyString
+  region: MyString
+  comparte: false
+  md: false
+  titulo: MyText
+  descripcion: MyText
+  user_id: 1
+
+two:
+  pieza: 1
+  direccion: MyString
+  precio: 1
+  bano: 1
+  estacionamiento: false
+  tipo: MyString
+  ciudad: MyString
+  region: MyString
+  comparte: false
+  md: false
+  titulo: MyText
+  descripcion: MyText
+  user_id: 1

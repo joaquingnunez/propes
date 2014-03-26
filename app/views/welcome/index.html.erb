@@ -1,5 +1,9 @@
 <% if user_signed_in? %>
+	<p><%= current_user.name %>
+	<%= current_user.lastname %></p>
+	<p>Crear una nueva Publicacion <%= link_to "Publicar Propiedad", new_publicacion_path %></p>
 	<%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
+	
 <%else%>
 	<%= link_to "Iniciar Sesión", new_user_session_path %>
 <%end%>

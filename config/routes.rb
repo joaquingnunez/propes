@@ -1,4 +1,6 @@
 Propest::Application.routes.draw do
+  resources :publicacions
+
   devise_for :users
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.
@@ -55,4 +57,8 @@ Propest::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  as :user do
+  get "/login" => "devise/sessions#new"
+  delete "/logout" => "devise/sessions#destroy"
+end
 end
