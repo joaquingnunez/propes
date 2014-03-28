@@ -60,10 +60,6 @@
   <%= @publicacion.descripcion %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @publicacion.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_publicacion_path(@publicacion) %> |
+<%= link_to 'Contactar', {:controller => "conversations", :action => "new", :id => @publicacion.id }%>
+<%= link_to 'Edit', edit_publicacion_path(@publicacion) %>
 <%= link_to 'Back', publicacions_path %>

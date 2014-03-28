@@ -1,7 +1,9 @@
 <% if user_signed_in? %>
-	<p><%= current_user.name %>
-	<%= current_user.lastname %></p>
+	<p><%=  @user.name %>
+	<%=  @user.lastname %></p>
+	<%= render @publicacion %>
 	<p>Crear una nueva Publicacion <%= link_to "Publicar Propiedad", new_publicacion_path %></p>
+	<p><%= link_to 'My Conversations', :conversations %></p>
 	<%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
 	
 <%else%>

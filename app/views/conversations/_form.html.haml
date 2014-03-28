@@ -1,0 +1,7 @@
+= simple_form_for :conversation, url: :conversations do |f|
+  = f.input :recipients, :input_html =>  { value: @user.email }, as: :hidden
+  = f.input :subject, label: 'Asunto', :as => :text, :input_html => { value: @publicacion.titulo,'rows' => 2, 'cols' => 50  },disabled: false
+  = f.input :body,label: 'Mensaje', :as => :text, :input_html => { 'rows' => 10, 'cols' => 100 } 
+  .form-actions
+    = f.button :submit,'Enviar Mensaje'
+    = submit_tag 'Borrar', type: :reset, class: 'btn btn-danger'

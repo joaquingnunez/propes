@@ -1,0 +1,52 @@
+<h1>Listado de tus publicaciones</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Piezas</th>
+      <th>Direccion</th>
+      <th>Precio</th>
+      <th>Baños</th>
+      <th>Estacionamiento</th>
+      <th>Tipo</th>
+      <th>Ciudad</th>
+      <th>Region</th>
+      <th>Comparte</th>
+      <th>Md</th>
+      <th>Titulo</th>
+      <th>Descripcion</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @publicacion.each do |publicacion| %>
+      <tr>
+        <td><%= publicacion.pieza %></td>
+        <td><%= publicacion.direccion %></td>
+        <td><%= publicacion.precio %></td>
+        <td><%= publicacion.bano %></td>
+        <% if publicacion.estacionamiento == false %>
+        <td>Sin Estacionamiento</td>
+        <% else %>
+        <td>Con Estacioniemto</td>
+        <% end %>
+        <td><%= publicacion.tipo %></td>
+        <td><%= publicacion.ciudad %></td>
+        <td><%= publicacion.region %></td>
+        <td><%= publicacion.comparte %></td>
+        <td><%= publicacion.md %></td>
+        <td><%= publicacion.titulo %></td>
+        <td><%= publicacion.descripcion %></td>
+        <td><%= link_to 'Show', publicacion %></td>
+        <td><%= link_to 'Edit', edit_publicacion_path(publicacion) %></td>
+        <td><%= link_to 'Destroy', publicacion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
