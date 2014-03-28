@@ -28,6 +28,7 @@ Propest::Application.configure do
   config.assets.debug = true
   require 'tlsmail' 
   Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+  Rails.application.routes.default_url_options[:host] = '???'
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   ActionMailer::Base.perform_deliveries = true
   ActionMailer::Base.raise_delivery_errors = true
