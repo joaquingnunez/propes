@@ -1,11 +1,34 @@
 <% if user_signed_in? %>
 	<p><%=  @user.name %>
 	<%=  @user.lastname %></p>
-	<%= render @publicacion %>
-	<p>Crear una nueva Publicacion <%= link_to "Publicar Propiedad", new_publicacion_path %></p>
-	<p><%= link_to 'My Conversations', :conversations %></p>
+	<h1>Listado de tus publicaciones</h1>
+	<table>
+	<thead>
+	<tr>
+      <th>Piezas</th>
+      <th>Direccion</th>
+      <th>Precio</th>
+      <th>Baños</th>
+      <th>Estacionamiento</th>
+      <th>Tipo</th>
+      <th>Ciudad</th>
+      <th>Region</th>
+      <th>Comparte</th>
+      <th>Md</th>
+      <th>Titulo</th>
+      <th>Descripcion</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      </tr>
+    <%= render @publicacion %>
+  </thead>
+  </table>
+	<p><%= link_to "Publicar Propiedad", new_publicacion_path %></p>
+	<p><%= link_to 'Bandeja de Entrada', :conversations %></p>
 	<%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
 	
 <%else%>
-	<%= link_to "Iniciar Sesión", new_user_session_path %>
+	<p><%= link_to "Iniciar Sesión", new_user_session_path %></p>
+	<p><%= link_to "Registrarse", new_user_registration_path %></p>
 <%end%>

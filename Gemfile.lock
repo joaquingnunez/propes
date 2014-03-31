@@ -78,6 +78,7 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.9.2)
+    nested_form (0.3.2)
     orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.4)
@@ -155,12 +156,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  carrierwave (>= 0.5.3)
   coffee-rails (~> 4.0.0)
   devise
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
   mailboxer
+  nested_form
   pg
   rails (= 4.0.3)
   rails_12factor

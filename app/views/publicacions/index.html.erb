@@ -23,7 +23,7 @@
   </thead>
 
   <tbody>
-    <% @publicacions.each do |publicacion| %>
+    <% @publicacion.each do |publicacion| %>
       <tr>
         <td><%= publicacion.pieza %></td>
         <td><%= publicacion.direccion %></td>
@@ -42,9 +42,9 @@
         <td><%= publicacion.titulo %></td>
         <td><%= publicacion.descripcion %></td>
         <td><%= @user.email %></td>
-        <td><%= link_to 'Show', publicacion %></td>
-        <td><%= link_to 'Edit', edit_publicacion_path(publicacion) %></td>
-        <td><%= link_to 'Destroy', publicacion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', publicacion %></td>
+        <td><%= link_to 'Editar', edit_publicacion_path(publicacion) %></td>
+        <td><%= link_to 'Eliminar', publicacion, method: :delete, data: { confirm: '¿Estás Seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -52,4 +52,4 @@
 
 <br>
 
-<%= link_to 'New Publicacion', new_publicacion_path %>
+<%= link_to 'Nueva publicacion', new_publicacion_path %>

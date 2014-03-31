@@ -6,7 +6,7 @@ class PublicacionsController < ApplicationController
   # GET /publicacions.json
   def index
     @user = current_user
-    @publicacions =  @user.publicacions.all
+    @publicacion =  @user.publicacions.all
   end
 
   # GET /publicacions/1
@@ -32,7 +32,7 @@ class PublicacionsController < ApplicationController
 
     respond_to do |format|
       if @publicacion.save
-        format.html { redirect_to @publicacion, notice: 'Publicacion was successfully created.' }
+        format.html { redirect_to @publicacion }
         format.json { render action: 'show', status: :created, location: @publicacion }
       else
         format.html { render action: 'new' }
@@ -73,6 +73,6 @@ class PublicacionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publicacion_params
-      params.require(:publicacion).permit(:pieza, :direccion, :precio, :bano, :estacionamiento, :tipo, :ciudad, :region, :comparte, :md, :titulo, :descripcion)
+      params.require(:publicacion).permit(:pieza, :direccion, :precio, :bano, :estacionamiento, :tipo, :ciudad, :region, :comparte, :md, :titulo, :descripcion,attachments_attributes: [:id, :file, :file_cache, :_destroy])
     end
 end
