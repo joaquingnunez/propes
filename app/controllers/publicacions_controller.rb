@@ -62,7 +62,7 @@ class PublicacionsController < ApplicationController
       @user = current_user
     end
     @search = Publicacion.search(params[:q])
-    @publicacion=@search.result
+    @publicacion=@search.result.page(params[:page]).per(15)
   end
   # DELETE /publicacions/1
   # DELETE /publicacions/1.json
