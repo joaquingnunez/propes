@@ -1,6 +1,7 @@
 class PublicacionsController < ApplicationController
   before_action :set_publicacion, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :search]
+  before_action :check_publicacion, only: [:edit, :update, :destroy] 
 
   # GET /publicacions
   # GET /publicacions.json
@@ -55,6 +56,14 @@ class PublicacionsController < ApplicationController
     end
   end
 
+
+  def search
+    if user_signed_in?
+      @user = current_user
+    end
+    @search = Publicacion.search(params[:q])
+    @publicacion=@search.result
+  end
   # DELETE /publicacions/1
   # DELETE /publicacions/1.json
   def destroy
@@ -68,8 +77,17 @@ class PublicacionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_publicacion
-      @publicacion = Publicacion.find(params[:id])
+      @publicacion = Publicacion.find_by_id(params[:id])
     end
+
+    def check_publicacion
+      @user=current_user
+      id=params[:id]
+      if (@user.publicacions.find_by_id(id) == nil)
+         flash[:error] = "Accion no permitida"
+         redirect_to url_for(:controller => :welcome, :action => :index)
+       end
+     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publicacion_params

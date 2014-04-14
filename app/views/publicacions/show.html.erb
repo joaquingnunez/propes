@@ -67,8 +67,11 @@
   <% end %>
 </ul>
 
-
-
-<%= link_to 'Contactar', {:controller => "conversations", :action => "new", :id => @publicacion.id }%>
-<%= link_to 'Editar', edit_publicacion_path(@publicacion) %>
-<%= link_to 'Volver', publicacions_path %>
+<% if current_user.present? %>
+  <% if current_user.publicacions.find_by_id(@publicacion.id) == nil %>
+    <%= link_to 'Contactar', {:controller => "conversations", :action => "new", :id => @publicacion.id }%>
+  <% else %>
+    <%= link_to 'Editar', edit_publicacion_path(@publicacion) %>
+  <% end %>
+<%end %>
+<%= link_to 'Volver', :back %>

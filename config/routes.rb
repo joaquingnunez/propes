@@ -1,8 +1,10 @@
 Propest::Application.routes.draw do
-  resources :publicacions
+  resources :publicacions do
+    get 'search', on: :collection
+  end
 
   devise_for :users
-  root 'welcome#index'
+  root 'publicacions#search'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

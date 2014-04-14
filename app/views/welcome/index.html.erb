@@ -1,22 +1,21 @@
+
+<%= form_tag publicacions_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
 <% if user_signed_in? %>
 	<p><%=  @user.name %>
 	<%=  @user.lastname %></p>
-	<h1>Listado de tus publicaciones</h1>
+<%end%>
+	<h1>Listado de Propiedades</h1>
 	<table>
 	<thead>
 	<tr>
-      <th>Piezas</th>
-      <th>Direccion</th>
-      <th>Precio</th>
-      <th>Baños</th>
-      <th>Estacionamiento</th>
-      <th>Tipo</th>
-      <th>Ciudad</th>
-      <th>Region</th>
-      <th>Comparte</th>
-      <th>Md</th>
       <th>Titulo</th>
       <th>Descripcion</th>
+      <th>Precio</th>
       <th></th>
       <th></th>
       <th></th>
@@ -24,6 +23,8 @@
     <%= render @publicacion %>
   </thead>
   </table>
+  <% if user_signed_in? %>
+  <p><%= link_to "Mis Propiedades", {:controller=>"publicacions", :action=>"index"} %></p>
 	<p><%= link_to "Publicar Propiedad", new_publicacion_path %></p>
 	<p><%= link_to 'Bandeja de Entrada', :conversations %></p>
 	<%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>

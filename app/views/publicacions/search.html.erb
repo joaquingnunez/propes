@@ -1,0 +1,53 @@
+<h1>Listado de Propiedades</h1>
+<%= search_form_for(@search,url: search_publicacions_path,html: { method: :get }) do |f| %>
+    <div class="field">
+    <%= f.label :pieza_gteq,"Numero de Piezas entre" %><br>
+    <%= f.number_field :pieza_gteq %>
+    <%= f.label :pieza_lteq, "y" %>
+    <%= f.number_field :pieza_lteq %>    
+  </div>
+  <div class="field">
+    <%= f.label :bano_gteq,"Numero de Baños entre" %><br>
+    <%= f.number_field :bano_gteq %>
+    <%= f.label :bano_lteq, "y" %>
+    <%= f.number_field :bano_lteq %>    
+  </div>
+    <div class="field">
+    <%= f.label :precio_gteq,"Precio entre" %><br>
+    <%= f.number_field :precio_gteq %>
+    <%= f.label :precio_lteq, "y" %>
+    <%= f.number_field :precio_lteq %>    
+  </div>
+  <%= f.hidden_field :tags_list, :value => '1' %>
+  <%= f.submit "Buscar" %>
+<% end %>
+<% if @publicacion.size >0 %>
+<h1>Propiedades encontradas</h1>
+<table>
+	<thead>
+	<tr>
+      <th>Titulo</th>
+      <th>Descripcion</th>
+      <th><%=sort_link(@search, :precio, "Pecio") %></th>
+      <th><%=sort_link(@search, :created_at, "Fecha Publicación")%></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      </tr>
+ <%= render @publicacion %>
+ </thead>
+  </table>
+  <% else %>
+  <h2>No existen coincidencias</h2>
+  <% end %>
+  <% if user_signed_in? %>
+  <p><%= link_to "Mis Propiedades", {:controller=>"publicacions", :action=>"index"} %></p>
+  <p><%= link_to "Publicar Propiedad", new_publicacion_path %></p>
+  <p><%= link_to 'Bandeja de Entrada', :conversations %></p>
+  <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
+  
+<%else%>
+  <p><%= link_to "Iniciar Sesión", new_user_session_path %></p>
+  <p><%= link_to "Registrarse", new_user_registration_path %></p>
+<%end%>
+

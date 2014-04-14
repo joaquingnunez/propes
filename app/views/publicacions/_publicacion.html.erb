@@ -1,22 +1,8 @@
 
       <tr>
-        <td><%= publicacion.pieza %></td>
-        <td><%= publicacion.direccion %></td>
-        <td><%= publicacion.precio %></td>
-        <td><%= publicacion.bano %></td>
-        <% if publicacion.estacionamiento == false %>
-        <td>Sin Estacionamiento</td>
-        <% else %>
-        <td>Con Estacioniemto</td>
-        <% end %>
-        <td><%= publicacion.tipo %></td>
-        <td><%= publicacion.ciudad %></td>
-        <td><%= publicacion.region %></td>
-        <td><%= publicacion.comparte %></td>
-        <td><%= publicacion.md %></td>
         <td><%= publicacion.titulo %></td>
         <td><%= publicacion.descripcion %></td>
+        <td><%= publicacion.precio %></td>
+        <td><%= publicacion.created_at.strftime("%d-%m-%Y") %></td>
         <td><%= link_to 'Ver', publicacion %></td>
-        <td><%= link_to 'Editar', edit_publicacion_path(publicacion) %></td>
-        <td><%= link_to 'Eliminar', publicacion, method: :delete, data: { confirm: '¿Estás Seguro?' } %></td>
       </tr>

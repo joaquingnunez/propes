@@ -18,8 +18,11 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'mailboxer'
 gem 'carrierwave', '>= 0.5.3'
 gem 'nested_form'
-
+gem "ransack"
+gem 'kaminari'
 gem 'rails_12factor', group: :production
+gem 'progress_bar'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
 
