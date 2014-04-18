@@ -23,4 +23,4 @@ en:
   hello: "Hello world"
 datetime:
      formats:
-         notime: "%d-%m-%Y"
+         notime: "%d-%m-%Y" 

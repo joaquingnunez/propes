@@ -1,6 +1,4 @@
- <%= javascript_include_tag 'gmaps.js' %>
- <%= stylesheet_link_tag    "jquery-ui-1.8.16.custom" %>
-<%= simple_nested_form_for @publicacion, :html=>{:multipart => true } do |f| %>
+<%= nested_form_for @publicacion, :html=>{:multipart => true } do |f| %>
   <% if @publicacion.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@publicacion.errors.count, "error") %> prohibited this publicacion from being saved:</h2>
@@ -14,37 +12,52 @@
   <% end %>
 
   <div class="field">
-    <%= f.input :pieza, label: "Numero de Piezas", as: :integer %>
+    <%= f.label "Numero de Piezas" %><br>
+    <%= f.number_field :pieza %>
   </div>
   <div class="field">
-    <%= f.input :bano, label: "Numero de Baños", as: :integer %>
+    <%= f.label "Numero de Baños" %><br>
+    <%= f.number_field :bano %>
   </div>
   <div class="field">
-    <%= f.input :precio, label: "Ingrese Mensualidad", as: :integer %>
+    <%= f.label :direccion %><br>
+    <%= f.text_field :direccion %>
   </div>
   <div class="field">
-    <%= f.input :estacionamiento, :as => :boolean, input_html: {checked: false} %>
+    <%= f.label :precio %><br>
+    <%= f.number_field :precio %>
   </div>
   <div class="field">
-    <%= f.input :tipo %>
+    <%= f.label :estacionamiento %><br>
+    <%= f.check_box :estacionamiento %>
   </div>
   <div class="field">
-    <%= f.input :ciudad %>
+    <%= f.label :tipo %><br>
+    <%= f.text_field :tipo %>
   </div>
   <div class="field">
-    <%= f.input :region %>
+    <%= f.label :ciudad %><br>
+    <%= f.text_field :ciudad %>
   </div>
   <div class="field">
-    <%= f.input :comparte, :as => :boolean, input_html: {checked: false} %>
+    <%= f.label :region %><br>
+    <%= f.text_field :region %>
   </div>
   <div class="field">
-    <%= f.input :md, :as => :boolean, input_html: {checked: false} %>
+    <%= f.label :comparte %><br>
+    <%= f.check_box :comparte %>
   </div>
   <div class="field">
-    <%= f.input :titulo %>
+    <%= f.label :md %><br>
+    <%= f.check_box :md %>
   </div>
   <div class="field">
-    <%= f.input :descripcion %>
+    <%= f.label :titulo %><br>
+    <%= f.text_area :titulo %>
+  </div>
+  <div class="field">
+    <%= f.label :descripcion %><br>
+    <%= f.text_area :descripcion %>
   </div>
   <%= f.fields_for :attachments do |attachment_form|  %>
     <p>
@@ -59,17 +72,23 @@
   <% end %>
   <%= f.link_to_add "Agregar Imagen", :attachments %>
 
-<div id='input'>
-<%=f.input :direccion, :input_html =>{:id => 'gmaps-input-address'}, :placeholder => 'Ingrese o indique la dirección de la propiedad' %>
+  <div id='input'>
+  <input id='gmaps-input-address' placeholder='Ingrese o indique la dirección de la propiedad' type='text' />
+   <br/>
+      Latitude: <span id='gmaps-output-latitude'></span>
+      <br/>
+      Longitude: <span id='gmaps-output-longitude'></span>
+      <br/>
 
       <div id='gmaps-error'></div>
     </div>
 
     <div id='gmaps-canvas'></div>
   </div>
-  <%= f.input :latitude, input_html: { value: '1', :id => 'gmaps-output-latitudes'}, as: :hidden %>
-  <%= f.input :longitude, input_html: { value: '1', :id => 'gmaps-output-longitudes'}, as: :hidden %>
+
+
   <div class="actions">
     <%= f.submit "Publicar Propiedad"%>
   </div>
 <% end %>
+ 

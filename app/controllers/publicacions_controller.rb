@@ -62,7 +62,7 @@ class PublicacionsController < ApplicationController
       @user = current_user
     end
     @search = Publicacion.search(params[:q])
-    @publicacion=@search.result.page(params[:page]).per(15)
+    @publicacion=@search.result.page(params[:page]).per(5)
   end
   # DELETE /publicacions/1
   # DELETE /publicacions/1.json
@@ -91,6 +91,6 @@ class PublicacionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publicacion_params
-      params.require(:publicacion).permit(:pieza, :direccion, :precio, :bano, :estacionamiento, :tipo, :ciudad, :region, :comparte, :md, :titulo, :descripcion,attachments_attributes: [:id, :file, :file_cache, :_destroy])
+      params.require(:publicacion).permit(:pieza, :direccion, :precio, :bano, :estacionamiento, :tipo, :ciudad, :region, :comparte, :md, :latitude, :longitude,:titulo, :descripcion,attachments_attributes: [:id, :file, :file_cache, :_destroy])
     end
 end

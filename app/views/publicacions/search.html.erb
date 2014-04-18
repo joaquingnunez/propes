@@ -33,10 +33,14 @@
       <th></th>
       <th></th>
       </tr>
- <%= render @publicacion %>
  </thead>
-  </table>
-   <%= paginate @publicacion %>
+ <tbody id="publicacions">
+ <%= render @publicacion %>
+ </tbody>
+</table>
+   <div id="paginator">
+   <%= paginate @publicacion, :remote => true %> 
+   </div>
   <% else %>
   <h2>No existen coincidencias</h2>
   <% end %>
