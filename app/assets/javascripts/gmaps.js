@@ -15,8 +15,7 @@ function gmaps_init(){
   };
 
   // create our map object
-  map = new google.maps.Map(document.getElementById("gmaps-canvas"), options);
-
+  map = new google.maps.Map(document.getElementById("gmaps-canvas"), options); 
   // the geocoder object allows us to do latlng lookup based on address
   geocoder = new google.maps.Geocoder();
 
