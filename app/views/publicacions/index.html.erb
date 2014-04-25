@@ -14,8 +14,6 @@
       <th>Comparte</th>
       <th>Md</th>
       <th>Titulo</th>
-      <th>Descripcion</th>
-      <th>User</th>
       <th></th>
       <th></th>
       <th></th>
@@ -40,8 +38,6 @@
         <td><%= publicacion.comparte %></td>
         <td><%= publicacion.md %></td>
         <td><%= publicacion.titulo %></td>
-        <td><%= publicacion.descripcion %></td>
-        <td><%= @user.email %></td>
         <td><%= link_to 'Mostrar', publicacion %></td>
         <td><%= link_to 'Editar', edit_publicacion_path(publicacion) %></td>
         <td><%= link_to 'Eliminar', publicacion, method: :delete, data: { confirm: '¿Estás Seguro?' } %></td>
