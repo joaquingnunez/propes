@@ -30,9 +30,13 @@ class PublicacionsController < ApplicationController
   def create
     @user = current_user
     @publicacion = @user.publicacions.new(publicacion_params)
-
     respond_to do |format|
       if @publicacion.save
+        bitly = Bitly.client
+        bitId = 2
+        link = bitly.shorten("http://propest.herokuapp.com/publicacions/#{bitId}").short_url
+        client=@publicacion.twitter
+        client.update("#{@publicacion.titulo}, #{@publicacion.ciudad}, Precio: #{@publicacion.precio}. Conocela: #{link}")
         format.html { redirect_to @publicacion }
         format.json { render action: 'show', status: :created, location: @publicacion }
       else

@@ -30,80 +30,59 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
-<p id="notice"><%= notice %></p>
-
+<div class="column4">
+  <div class="title"><%= @publicacion.titulo %></div>
+  </div>
 <p>
-  <strong>Pieza:</strong>
-  <%= @publicacion.pieza %>
-</p>
+<div class="column2" style="background-color:#f3f5f6; margin-left:5px;">
 
-<p>
-  <strong>Precio:</strong>
-  <%= @publicacion.precio %>
-</p>
+          <div class="big_pic"><%= image_tag "images/big_pic.jpg", :title => "", :size => "282x212", :class => "img_big_pic"%></div>
+            
+            <div class="pictures_thumbs">
+            <h3>Imágenes de la Propiedad:</h3>
+            <% for attachment in @publicacion.attachments %>
+            <a href="#"><%= image_tag attachment.file_url, :title => "", :size => "104x78", :class => "img_thumb"%></a>
+              <% end %>
+              </div>
+              </div>
 
-<p>
-  <strong>Bano:</strong>
-  <%= @publicacion.bano %>
-</p>
-
-<p>
-  <strong>Estacionamiento:</strong>
-  <%= @publicacion.estacionamiento %>
-</p>
-
-<p>
-  <strong>Tipo:</strong>
-  <%= @publicacion.tipo %>
-</p>
-
-<p>
-  <strong>Ciudad:</strong>
-  <%= @publicacion.ciudad %>
-</p>
-
-<p>
-  <strong>Region:</strong>
-  <%= @publicacion.region %>
-</p>
-
-<p>
-  <strong>Comparte:</strong>
-  <%= @publicacion.comparte %>
-</p>
-
-<p>
-  <strong>Md:</strong>
-  <%= @publicacion.md %>
-</p>
-
-<p>
-  <strong>Titulo:</strong>
-  <%= @publicacion.titulo %>
-</p>
-
-<p>
-  <strong>Descripcion:</strong>
-  <%= @publicacion.descripcion %>
-</p>
-<ul>
-  <% for attachment in @publicacion.attachments %>
-    <li>
-    <%= image_tag(attachment.file_url)%>
-    </li>
-  <% end %>
-</ul>
-    <p>
-  <strong>Direccion:</strong>
-  <%= @publicacion.direccion %>
-</p>
+  <div class="column3">
+    <div class="main_text_box">
+      <h1>Descripción</h1>
+      <p><%= @publicacion.descripcion %></p>
+      <div class="title2">Especificaciones:</div> 
+            <div class="details_list">
+            <ul>
+            <li><span>Valor:</span><%= @publicacion.precio %></li>
+                <li><span>Región:</span><%= @publicacion.region %></li>
+                <li><span>Ciudad:</span><%= @publicacion.ciudad %></li>
+                <li><span>Tipo:</span><%= @publicacion.tipo %></li>
+                <li><span>Piezas:</span><%= @publicacion.pieza %></li>
+                <li><span>Baños:</span><%= @publicacion.bano %></li>
+                <li><span>Estacionamiento:</span><%= @publicacion.estacionamiento %></li>
+                <li><span>Propiedad Compartida:</span><%= @publicacion.comparte %></li>
+                <li><span>Disponible Marzo a Diciembre:</span><%= @publicacion.md %></li>
+            
+            </ul>
+            </div>    
+        </div><!-- end of column three -->
     <div id='map-canvas'></div>
-
 <% if current_user.present? %>
   <% if current_user.publicacions.find_by_id(@publicacion.id) == nil %>
-    <%= link_to 'Contactar', {:controller => "conversations", :action => "new", :id => @publicacion.id }%>
+     <div style="float:left;">
+            <div class="button">
+              <%= link_to 'Contactar', {:controller => "conversations", :action => "new", publicacion_id: @publicacion }%>
+              <!-- :id => @publicacion.id  -->
+            </div>
+            </div>
   <% else %>
-    <%= link_to 'Editar', edit_publicacion_path(@publicacion) %>
+  <div class="right_buttons">
+    <div class="right_button">
+      <%= link_to 'Editar', edit_publicacion_path(@publicacion) %>
+    </div>
   <% end %>
 <%end %>
-<%= link_to 'Volver', :back %>
+ <div class="right_button">
+      <%= link_to 'Volver', :back %>
+    </div>
+</div>

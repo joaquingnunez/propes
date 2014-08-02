@@ -21,7 +21,9 @@ gem "ransack"
 gem 'kaminari'
 gem 'rails_12factor', group: :production
 gem 'progress_bar'
-
+gem 'twitter'
+gem 'bitly'
+gem 'lazybox'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
 

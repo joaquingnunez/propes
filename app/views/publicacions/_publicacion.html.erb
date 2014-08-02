@@ -1,7 +1,5 @@
-
-      <tr>
-        <td><%= publicacion.titulo %></td>
+      <tr class="even">
+        <td><%= link_to publicacion.titulo, publicacion %></td>
         <td><%= publicacion.precio %></td>
         <td><%= publicacion.created_at.strftime("%d-%m-%Y") %></td>
-        <td><%= link_to 'Ver', publicacion %></td>
       </tr>

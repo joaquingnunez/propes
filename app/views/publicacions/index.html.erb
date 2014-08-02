@@ -1,52 +1,53 @@
-<h1>Listado de Propiedades</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Piezas</th>
-      <th>Direccion</th>
-      <th>Precio</th>
-      <th>Baños</th>
-      <th>Estacionamiento</th>
-      <th>Tipo</th>
-      <th>Ciudad</th>
-      <th>Region</th>
-      <th>Comparte</th>
-      <th>Md</th>
-      <th>Titulo</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
+<div id="main_content">
+    
+    
+    <div id="admin_header">
+      <div class="admin_index_title">Mis Publicaciones</div>        
+        </div>
+<div class="table_grid">
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <b><th style="width:auto;"class="pink"><p class="pink">Titulo</p></th>
+                        <th style="width:auto;"class="pink"><p class="pink">Valor</p></th>
+                        <th style="width:auto;"class="pink"><p class="pink">Editar</p></th>
+                        <th style="width:auto;"class="pink"><p class="pink">Eliminar</p></th>
+                        </b>
+                    </tr>
   <tbody>
     <% @publicacion.each do |publicacion| %>
-      <tr>
-        <td><%= publicacion.pieza %></td>
-        <td><%= publicacion.direccion %></td>
+      <tr class="even">
+        <td><%= link_to publicacion.titulo, publicacion %></td>
         <td><%= publicacion.precio %></td>
-        <td><%= publicacion.bano %></td>
-        <% if publicacion.estacionamiento == false %>
-        <td>Sin Estacionamiento</td>
-        <% else %>
-        <td>Con Estacioniemto</td>
-        <% end %>
-        <td><%= publicacion.tipo %></td>
-        <td><%= publicacion.ciudad %></td>
-        <td><%= publicacion.region %></td>
-        <td><%= publicacion.comparte %></td>
-        <td><%= publicacion.md %></td>
-        <td><%= publicacion.titulo %></td>
-        <td><%= link_to 'Mostrar', publicacion %></td>
-        <td><%= link_to 'Editar', edit_publicacion_path(publicacion) %></td>
-        <td><%= link_to 'Eliminar', publicacion, method: :delete, data: { confirm: '¿Estás Seguro?' } %></td>
+        <td><%=link_to( image_tag("images/adminicons/edit.png", :alt => "Edit", :title => "Edit", :size => "22x22"), edit_publicacion_path(publicacion)) %></td>
+         <td><%= link_to (image_tag "images/adminicons/delete.png", :alt => "Eliminar", :title => "Eliminar", :size => "24x24"), publicacion, method: :delete, data: { confirm: '¿Estás Seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
+<div class="right_buttons">
+    <div class="right_button">
+      <%= link_to 'Publicar Propiedad', new_publicacion_path %>
+    </div>
+    <div class="right_button">
+      <%= link_to 'Volver', :back %>
+    </div>
+</div>
 
-<br>
+<div id="footer">
 
-<%= link_to 'Publicar Propiedad', new_publicacion_path %>
-<%= link_to 'Volver', :back %>
+  <div id="copyright">
+    <div style="float:left; padding:3px;"><a href="#"><img src="images/footer_logo.gif" width="42" height="35" alt="" title="" border="0" /></a></div>
+    <div style="float:left; padding:14px 10px 10px 10px;"> Company name.&copy; All Rights Reserved 2008 - By <a href="http://csscreme.com" style="color:#772c17;">csscreme</a></div>
+    </div>
+    <ul class="footer_menu">
+      <li><a href="index.html" class="nav_footer">  Home </a></li>
+        <li><a href="#" class="nav_footer">  Selling Homes </a></li>
+        <li><a href="" class="nav_footer">  Buying Homes </a></li>
+        <li><a href="" class="nav_footer">  Renting Homes</a></li>
+        <li><a href="" class="nav_footer">  RSS </a></li>
+        <li><a href="" class="nav_footer">  Contact </a></li>
+    </ul>
+
+</div>
+</div>

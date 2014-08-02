@@ -12,53 +12,65 @@
       </ul>
     </div>
   <% end %>
+   <div id="admin_header_border"></div>
+   <div class="add_tab">  
+          <div class="form_contact">
+             <div class="adminform_row_contact">
+               <%= f.input :titulo,label: "Titulo: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" }, as: :text %>
+              </div>
 
-  <div class="field">
-    <%= f.input :pieza, label: "Numero de Piezas", as: :integer %>
-  </div>
-  <div class="field">
-    <%= f.input :bano, label: "Numero de Baños", as: :integer %>
-  </div>
-  <div class="field">
-    <%= f.input :precio, label: "Ingrese Mensualidad", as: :integer %>
-  </div>
-  <div class="field">
-    <%= f.input :estacionamiento, :as => :boolean, input_html: {checked: false} %>
-  </div>
-  <div class="field">
-    <%= f.input :tipo %>
-  </div>
-  <div class="field">
-    <%= f.input :ciudad %>
-  </div>
-  <div class="field">
-    <%= f.input :region %>
-  </div>
-  <div class="field">
-    <%= f.input :comparte, :as => :boolean, input_html: {checked: false} %>
-  </div>
-  <div class="field">
-    <%= f.input :md, :as => :boolean, input_html: {checked: false} %>
-  </div>
-  <div class="field">
-    <%= f.input :titulo %>
-  </div>
-  <div class="field">
-    <%= f.input :descripcion %>
-  </div>
-  <%= f.fields_for :attachments do |attachment_form|  %>
-    <p>
-     <%= image_tag(attachment_form.object.file.url) if attachment_form.object.file? %>
-    </p>
-    <p>
-    <%= attachment_form.label :file,"Imagen" %><br />
-    <%= attachment_form.file_field :file %>
-    <%= attachment_form.hidden_field :file_cache %>
-    </p>
-    <%= attachment_form.link_to_remove "Eliminar Imagen" %>
-  <% end %>
-  <%= f.link_to_add "Agregar Imagen", :attachments %>
+              <div class="adminform_row_contact">
+               <%= f.input :precio,label: "Renta Mensual: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" }, as: :integer %>
+              </div>
 
+              <div class="adminform_row_contact">
+               <%= f.input :pieza,label: "Número de Piezas: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" }, as: :integer %>
+              </div>
+
+              <div class="adminform_row_contact">
+               <%= f.input :bano,label: "Número de Baños: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" }, as: :integer %>
+              </div>
+
+              <div class="adminform_row_contact">
+               <%= f.input :region,label: "Region: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" } %>
+              </div>
+
+              <div class="adminform_row_contact">
+               <%= f.input :ciudad,label: "Ciudad: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" } %>
+              </div>
+
+              <div class="form_row">
+               <%= f.input :estacionamiento,:as => :boolean, input_html: {checked: false},boolean_style: :inline, :label =>  "Incluye Estacionamiento" %>
+              </div>
+
+              <div class="form_row">
+               <%= f.input :md,:as => :boolean, input_html: {checked: false},boolean_style: :inline, :label =>  "Arriendo desde Marzo a Diciembre" %>
+              </div>
+
+              <div class="form_row">
+               <%= f.input :comparte,:as => :boolean, input_html: {checked: false}, :label =>  "La propiedad es compartida" %>
+              </div>
+
+              <div class="adminform_row_contact">
+              <%= f.input :tipo, :label => "Tipo de Propiedad", :collection => ["Departamento","Casa","Pieza"], :selected => "Departamento", label_html: { class: "adminleft" },input_html: { class: "form_select" } %>
+              </div>
+              <div class="adminform_row_contact">
+              <%= f.fields_for :attachments do |attachment_form|  %>
+                  <p>
+                    <%= image_tag(attachment_form.object.file.url) if attachment_form.object.file? %>
+                  </p>
+                  <p>
+                    <%= attachment_form.label :file,"Imagen" %><br />
+                    <%= attachment_form.file_field :file %>
+                    <%= attachment_form.hidden_field :file_cache %>
+                  </p>
+                  <%= attachment_form.link_to_remove "Eliminar Imagen" %>
+              <% end %>
+              <%= f.link_to_add "Agregar Imagen", :attachments %>
+              </div>
+  <div class="adminform_row_contact">
+  <%= f.input :descripcion,label: "Descripción: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" }, as: :text %>
+  </div>
 <div id='input'>
 <%=f.input :direccion, :input_html =>{:id => 'gmaps-input-address'}, :placeholder => 'Ingrese o indique la dirección de la propiedad' %>
 
@@ -66,10 +78,11 @@
     </div>
 
     <div id='gmaps-canvas'></div>
-  </div>
   <%= f.input :latitude, input_html: { value: '1', :id => 'gmaps-output-latitudes'}, as: :hidden %>
   <%= f.input :longitude, input_html: { value: '1', :id => 'gmaps-output-longitudes'}, as: :hidden %>
-  <div class="actions">
-    <%= f.submit "Publicar Propiedad"%>
+  <div style="float:right; padding:10px 25px 0 0;">
+    <%= f.submit "Publicar", class: "right_button"%>
+  </div>
+  </div>
   </div>
 <% end %>

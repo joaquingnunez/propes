@@ -1,2 +1,2 @@
-$('#publicacions').html('<%= escape_javascript render(@publicacion) %>');
-$('#paginator').html('<%= escape_javascript(paginate(@publicacion, :remote => true).to_s) %>');
+$('#publicacions').html('<%=j render(@publicacion) %>');
+$('#paginator').html('<%=j(paginate(@publicacion, :remote => true).to_s) %>');

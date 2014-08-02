@@ -1,7 +1,7 @@
 class ConversationsController < ApplicationController
   before_filter :authenticate_user!
   helper_method :mailbox, :conversation
-  before_action :check_user, only: [:create, :new]
+  #before_action :check_user, only: [:create, :new]
 
   def create
     recipient_emails = conversation_params(:recipients).split(',')
@@ -44,14 +44,14 @@ class ConversationsController < ApplicationController
     @conversation ||= mailbox.conversations.find(params[:id])
   end
 
-  def check_user
-    id = params[:id]
-    publicacion = Publicacion.find_by_id(id)
-    if(publicacion == nil or current_user.id == Publicacion.find_by_id(id).user_id)
-      flash[:error] = "Accion no permitida"
-      redirect_to url_for(:controller => :welcome, :action => :index)
-    end
-  end
+  #def check_user
+   # id = params[:id]
+    #publicacion = Publicacion.find_by_id(id)
+    #if(publicacion == nil or current_user.id == Publicacion.find_by_id(id).user_id)
+     # flash[:error] = "Accion no permitida"
+      #redirect_to url_for(:controller => :publicacions, :action => :search)
+    #end
+  #end
 
   def conversation_params(*keys)
     fetch_params(:conversation, *keys)

@@ -1,0 +1,54 @@
+
+
+
+<h1 class="page-header">Propiedades
+                                                            más recientes</h1>
+
+Solo 8 propiedades, limit 8
+<% @ultimas.each do |ultima| %>
+<div  class="item span3">
+             
+  <div class="views-field views-field-field-image">
+  	<div class="field-content">
+  	<%=link_to image_tag(attachment.file_url, { :typeof => "foaf:Image", :alt => "", :width => "540", :height => "400"}), ultima%>
+  		</div> 
+  	</div>  
+<div class="views-field views-field-title">
+	<h2 class="field-content">
+		<%= link_to ultima.titulo, ultima %>
+	</h2>  
+</div>  
+<div class="views-field views-field-field-location">        
+	<div class="field-content"><%=ultima.direccion %> <%=ultima.ciudad%></div>  
+</div>  
+<div class="views-field views-field-field-price">
+	<div class="field-content"><%=ultima.precio%></div>  
+</div>  
+ <div class="views-field views-field-field-area">
+ 	<span class="views-label views-label-field-area">Area: </span>    
+ 	<div class="field-content"><%=ultima.area%><sup>2</sup></div>  
+ </div>  
+  <div class="views-field views-field-field-bathrooms">
+  	<div class="field-content"><%=ultima.bano%></div>  
+  </div>  
+  <div class="views-field views-field-field-bedrooms">
+  	<div class="field-content"><%=ultima.pieza%></div>  
+  </div>            
+</div>
+<% end %>
+
+
+
+
+
+<h2 class="block-title">Todas las Propiedades</h2>
+<li class="jcarousel-item-"<%= index %>" even">  
+  <div class="views-field views-field-field-image">        <div class="field-content"> <%=link_to image_tag(attachment.file_url, { :typeof => "foaf:Image", :alt => "", :width => "540", :height => "400"}), ultima %></div>  
+  <div class="views-field views-field-title">        <h2 class="field-content">
+  	<%= link_to ultima.titulo, ultima %>
+  </h2>  </div>  
+  <div class="views-field views-field-field-location">        <div class="field-content"><%=ultima.direccion %> <%=ultima.ciudad%></div>  </div>  
+  <div class="views-field views-field-field-price">        <div class="field-content"><%=ultima.precio%></div>  </div>  
+  <div class="views-field views-field-field-area">    <span class="views-label views-label-field-area">Area: </span>    <div class="field-content"><%=ultima.area%><sup>2</sup></div>  </div>  
+  <div class="views-field views-field-field-bathrooms">        <div class="field-content"><%=ultima.bano%></div>  </div>  
+  <div class="views-field views-field-field-bedrooms">        <div class="field-content"><%=ultima.pieza%></div>  </div></li>
