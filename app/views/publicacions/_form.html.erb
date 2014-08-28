@@ -1,5 +1,95 @@
- <%= javascript_include_tag 'gmaps.js' %>
- <%= stylesheet_link_tag    "jquery-ui-1.8.16.custom" %>
+
+ <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false' %>
+<%= javascript_include_tag 'gmap3' %>
+<%= javascript_include_tag 'jquery-autocomplete' %>
+<%= stylesheet_link_tag    "jquery-autocomplete.css", media: "all"%>
+<script>
+  $(function(){
+            
+            $("#test").gmap3({
+    map:{
+      address:"Santiago Centro, CHILE",
+      options:{
+        zoom:14,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+          style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+        },
+        navigationControl: true,
+        scrollwheel: true,
+        streetViewControl: true
+      }
+    }
+  });
+            
+            $("#address").autocomplete({
+                source: function() {
+                    $("#test").gmap3({
+                        getaddress: {
+                            address: $(this).val(),
+                            callback: function(results){
+                                if (!results) return;
+                                $("#address").autocomplete("display", results, false);
+                            }
+                        }
+                    });
+                },
+                cb:{
+                    cast: function(item){
+                        return item.formatted_address;
+                    },
+                    select: function(item) {
+                        $("#test").gmap3({
+                            clear: "marker",
+                            marker: {
+                                latLng: item.geometry.location,
+                                options: {
+                                  icon: "http://maps.google.com/mapfiles/marker_green.png"
+                                }
+                            },
+                            map:{
+                                options: {
+                                    center: item.geometry.location,
+                                },
+                                   events:{
+      mousemove: function($this){
+       $('#gmaps-output-latitude').html(item.geometry.location.lat());
+  $('#gmaps-output-latitudes').val(item.geometry.location.lat());
+   $('#gmaps-output-longitude').html(item.geometry.location.lng());
+  $('#gmaps-output-longitudes').val(item.geometry.location.lng());
+      }
+    }
+                            }
+
+                        });
+                    }
+                }
+            })
+            .focus();
+        });
+</script>
+
+
+
+<style>
+  
+  #test{
+    height: 370px;
+    width: 1167px;
+  }
+  ul li {
+    list-style-type: none;
+  }
+  #publicacion_descripcion{
+    resize: none;
+  }
+  .btn-primary{
+     margin-top: 10px;
+  }
+</style>
+
+
 <%= simple_nested_form_for @publicacion, :html=>{:multipart => true } do |f| %>
   <% if @publicacion.errors.any? %>
     <div id="error_explanation">
@@ -12,32 +102,183 @@
       </ul>
     </div>
   <% end %>
-   <div id="admin_header_border"></div>
+
+   <div class="row">
+                <div class="span4">
+                    <h3><strong>1.</strong> <span>Datos Propiedad</span></h3>
+                <div class="control-group">
+                        <label class="control-label" for="inputPropertyLocation">
+                            Ciudad
+                            <span class="form-required" title="Este campo es requerido.">*</span>
+                        </label>
+                        <div class="controls">
+                              <%= f.input :ciudad, label: false,input_html: { id: "inputPropertyLocation" } %>
+                        </div><!-- /.controls -->
+                    </div><!-- /.control-group -->
+
+                    <div class="property-type control-group">
+                        <label class="control-label" for="inputPropertyPropertyType">
+                            Tipo Propiedad
+                            <span class="form-required" title="Este campo es requerido.">*</span>
+                        </label>
+                        <div class="controls">
+                            <%= f.input :tipo, :collection => ["Departamento","Casa"], :selected => "Departamento", :id =>"inputPropertyPropertyType",input_html: { class: "form_select" },label: false   %>
+                        </div><!-- /.controls -->
+                    </div><!-- /.control-group -->
+
+                    <div class="contract-type control-group">
+                        <label class="control-label" for="inputPropertyContractType">
+                            Tipo Contrato
+                            <span class="form-required" title="Este campo es requerido.">*</span>
+                        </label>
+                        <div class="controls">
+                            <%= f.input :contrato, label: false, :collection => ["Venta","Arriendo"], :selected => "Venta", :id => "inputPropertyContractType",input_html: { class: "form_select" }  %>
+                        </div><!-- /.controls -->
+                    </div><!-- /.control-group -->
+
+                    <div class="bedrooms control-group">
+                        <label class="control-label" for="inputPropertyBedrooms">
+                            Dormitorios
+                            <span class="form-required" title="Este campo es requerido.">*</span>
+                        </label>
+                        <div class="controls">
+                            <%= f.input :pieza, label: false, collection: 0..8, :selected =>"1"  %>
+                        </div><!-- /.controls -->
+                    </div><!-- /.control-group -->
+
+                    <div class="bathrooms control-group">
+                        <label class="control-label" for="inputPropertyBathrooms">
+                            Baños
+                            <span class="form-required" title="Este campo es requerido.">*</span>
+                        </label>
+                        <div class="controls">
+                            <%= f.input :bano, label: false, collection: 0..5, :selected =>"1"  %>
+                        </div><!-- /.controls -->
+                    </div><!-- /.control-group -->
+
+                    <div class="area control-group">
+                        <label class="control-label" for="inputPropertyArea">
+                            Superficie (mts<sup>2</sup>)
+                            <span class="form-required" title="Este campo es requerido.">*</span>
+                        </label>
+                        <div class="controls">
+                            <%= f.input :superficie, label: false, input_html: { id: "inputPropertyArea", type: "text" } %>
+                        </div><!-- /.controls -->
+                    </div><!-- /.control-group -->
+
+                    <div class="price control-group">
+                        <label class="control-label" for="inputPropertyPrice">
+                            Precio
+                            <span class="form-required" title="This field is required.">*</span>
+                        </label>
+                        <div class="controls">
+                            <%= f.input :precio, label: false, input_html: { id: "inputPropertyPrice", type: "text" } %>
+                        </div><!-- /.controls -->
+                    </div><!-- /.control-group -->
+                </div><!-- /.span4 -->
+
+                <div class="span4">
+                    <h3><strong>2.</strong> <span>Subir Imagen</span></h3>
+
+                     <div class="control-group">
+                        <label class="control-label" for="inputPropertyLocation">
+                            Titulo Publicacion
+                            <span class="form-required" title="Este campo es requerido.">*</span>
+                        </label>
+                        <div class="controls">
+                            <%= f.input :titulo, label: false,:as => :string %>
+                        </div><!-- /.controls -->
+                    </div><!-- /.control-group -->
+
+                    <div class="control-group">
+                        <label class="control-label" for="inputPropertyNotes">
+                            Descripción
+                            <span class="form-required" title="Este campo es requerido.">*</span>
+                        </label>
+                        <div class="controls">
+                             <%= f.input :descripcion,label: false %>
+                        </div><!-- /.controls -->
+                    </div><!-- /.control-group -->
+
+                    <%= f.fields_for :attachments do |attachment_form|  %>
+                  <p>
+                    <%= image_tag(attachment_form.object.file.url) if attachment_form.object.file? %>
+                  </p>
+                  <p>
+                    <%= attachment_form.label :file,"Imagen" %><br />
+                    <%= attachment_form.file_field :file %>
+                    <%= attachment_form.hidden_field :file_cache %>
+                  </p>
+                  <%= attachment_form.link_to_remove "Eliminar Imagen" %>
+              <% end %>
+              <%= f.link_to_add "Agregar Imagen", :attachments %>
+                </div><!-- /.span4 -->
+
+              <div class="span4">
+                 <h3><strong>3.</strong> <span>Comodidades Generales</span></h3>
+                   <div class="row">
+                        <ul class="span2">
+                            <li>
+                                <%= f.input :aire, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Aire Acondicionado" %>
+                            </li>
+                            <li>
+                                 <%= f.input :balcon, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Balcon" %>
+                            </li>
+                            <li>
+                                <%= f.input :calefaccion, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Calefaccion" %>
+                            </li>
+                            <li>
+                                <%= f.input :piscina, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Piscina" %>
+                            </li>
+                            <li>
+                                <%= f.input :multiuso, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Salon Multiuso" %>
+                            </li>
+                            <li>
+                                <%= f.input :spa, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Spa" %>
+                            </li>
+                            <li>
+                                <%= f.input :computacion, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Sala Computacion" %>
+                            </li>
+                            <li>
+                                <%= f.input :conserje, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Conserje" %>
+                            </li>
+                            <li>
+                                <%= f.input :lavado, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Sala de Lavado" %>
+                            </li>
+                        </ul>
+                        <ul class="span2">
+                            <li>
+                                <%= f.input :cine, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Cine" %>
+                            </li>
+                            <li>
+                                <%= f.input :estacionamiento, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Estacionamiento Privado" %>
+                            </li>
+                            <li>
+                                <%= f.input :visita, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Estacionamiento Visitas" %>
+                            </li>
+                            <li>
+                                <%= f.input :quincho, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Quincho" %>
+                            </li>
+                            <li>
+                                <%= f.input :juegos, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Salon de Juegos" %>
+                            </li>
+                            <li>
+                                <%= f.input :cocina, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Cocina Equipada" %>
+                            </li>
+                            <li>
+                                <%= f.input :infantiles, as: :boolean, checked_value: true, unchecked_value: false, label: false,inline_label: "Juegos Infantiles" %>
+                            </li>
+                        </ul>
+                      </div>
+                    </div>
+
+<%
+=begin
+%>
+   <div id="admin_header_border"></div> 
    <div class="add_tab">  
           <div class="form_contact">
-             <div class="adminform_row_contact">
-               <%= f.input :titulo,label: "Titulo: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" }, as: :text %>
-              </div>
-
-              <div class="adminform_row_contact">
-               <%= f.input :precio,label: "Renta Mensual: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" }, as: :integer %>
-              </div>
-
-              <div class="adminform_row_contact">
-               <%= f.input :pieza,label: "Número de Piezas: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" }, as: :integer %>
-              </div>
-
-              <div class="adminform_row_contact">
-               <%= f.input :bano,label: "Número de Baños: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" }, as: :integer %>
-              </div>
-
-              <div class="adminform_row_contact">
-               <%= f.input :region,label: "Region: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" } %>
-              </div>
-
-              <div class="adminform_row_contact">
-               <%= f.input :ciudad,label: "Ciudad: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" } %>
-              </div>
+            
 
               <div class="form_row">
                <%= f.input :estacionamiento,:as => :boolean, input_html: {checked: false},boolean_style: :inline, :label =>  "Incluye Estacionamiento" %>
@@ -49,10 +290,6 @@
 
               <div class="form_row">
                <%= f.input :comparte,:as => :boolean, input_html: {checked: false}, :label =>  "La propiedad es compartida" %>
-              </div>
-
-              <div class="adminform_row_contact">
-              <%= f.input :tipo, :label => "Tipo de Propiedad", :collection => ["Departamento","Casa","Pieza"], :selected => "Departamento", label_html: { class: "adminleft" },input_html: { class: "form_select" } %>
               </div>
               <div class="adminform_row_contact">
               <%= f.fields_for :attachments do |attachment_form|  %>
@@ -71,18 +308,15 @@
   <div class="adminform_row_contact">
   <%= f.input :descripcion,label: "Descripción: ",label_html: { class: "adminleft" }, input_html: { class: "form_input_contact" }, as: :text %>
   </div>
-<div id='input'>
-<%=f.input :direccion, :input_html =>{:id => 'gmaps-input-address'}, :placeholder => 'Ingrese o indique la dirección de la propiedad' %>
-
-      <div id='gmaps-error'></div>
-    </div>
-
-    <div id='gmaps-canvas'></div>
-  <%= f.input :latitude, input_html: { value: '1', :id => 'gmaps-output-latitudes'}, as: :hidden %>
-  <%= f.input :longitude, input_html: { value: '1', :id => 'gmaps-output-longitudes'}, as: :hidden %>
-  <div style="float:right; padding:10px 25px 0 0;">
-    <%= f.submit "Publicar", class: "right_button"%>
+<%
+=end
+%>
+  <%= f.input :region, input_html: { value: 'Los Lagos'},as: :hidden %>
   </div>
-  </div>
-  </div>
+  <center><h3><strong>4.</strong> <span>Mapa</span></h3></center>
+               <%=f.input :direccion, label: false,:input_html =>{:id => 'address',:size => '120'}, :placeholder => 'Ingrese la dirección de la propiedad' %>
+    <div id="test" class="gmap3"></div>
+     <%= f.input :latitude, input_html: { value: '1', :id => 'gmaps-output-latitudes'}, as: :hidden %>
+  <%= f.input :longitude, input_html: { value: '1', :id => 'gmaps-output-longitudes'},as: :hidden %>
+   <center><%= f.submit "Publicar", class: "btn btn-primary btn-large"%></center>
 <% end %>

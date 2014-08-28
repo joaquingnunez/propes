@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417040154) do
+ActiveRecord::Schema.define(version: 20140819032604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,23 @@ ActiveRecord::Schema.define(version: 20140417040154) do
     t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "aire"
+    t.boolean  "balcon"
+    t.boolean  "calefaccion"
+    t.boolean  "piscina"
+    t.boolean  "multiuso"
+    t.boolean  "spa"
+    t.boolean  "computacion"
+    t.boolean  "conserje"
+    t.boolean  "lavado"
+    t.boolean  "cine"
+    t.boolean  "visita"
+    t.boolean  "quincho"
+    t.boolean  "juegos"
+    t.boolean  "cocina"
+    t.boolean  "infantiles"
+    t.integer  "superficie"
+    t.string   "contrato"
   end
 
   create_table "receipts", force: true do |t|

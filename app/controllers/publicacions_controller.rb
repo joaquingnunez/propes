@@ -95,6 +95,6 @@ class PublicacionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publicacion_params
-      params.require(:publicacion).permit(:pieza, :direccion, :precio, :bano, :estacionamiento, :tipo, :ciudad, :region, :comparte, :md, :latitude, :longitude,:titulo, :descripcion,attachments_attributes: [:id, :file, :file_cache, :_destroy])
+      params.require(:publicacion).permit(:pieza, :direccion, :precio, :bano, :estacionamiento, :tipo, :ciudad, :region, :comparte, :md, :latitude, :longitude,:titulo, :descripcion, :aire, :balcon, :calefaccion, :piscina, :multiuso, :spa, :computacion, :conserje, :lavado, :cine, :visita, :quincho, :juegos, :cocina, :infantiles, :superficie, :contrato, attachments_attributes: [:id, :file, :file_cache, :_destroy])
     end
 end

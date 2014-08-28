@@ -1,5 +1,338 @@
+<div id="wrapper-outer" >
+    <div id="wrapper">
+        <div id="wrapper-inner">
+            <!-- CONTENT -->
+            <div id="content"><div class="container">
+    <div id="main">
+        <div class="row">
+            <div class="span9">
+                <h1 class="page-header"><%= @publicacion.direccion %></h1>
+
+                <div class="carousel property">
+                    <div class="preview">
+                        <img src="assets/img/tmp/property-large-1.jpg" alt="">
+                    </div><!-- /.preview -->
+
+                    <div class="content">
+
+                        <a class="carousel-prev" href="#">Previous</a>
+                        <a class="carousel-next" href="#">Next</a>
+                        <ul>
+                            <li class="active">
+                                <img src="assets/img/tmp/property-large-1.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="assets/img/tmp/property-large-2.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="assets/img/tmp/property-large-3.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="assets/img/tmp/property-large-4.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="assets/img/tmp/property-large-1.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="assets/img/tmp/property-large-2.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="assets/img/tmp/property-large-3.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="assets/img/tmp/property-large-4.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="assets/img/tmp/property-large-1.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="assets/img/tmp/property-large-2.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="assets/img/tmp/property-large-3.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="assets/img/tmp/property-large-4.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="assets/img/tmp/property-large-1.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="assets/img/tmp/property-large-2.jpg" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.content -->
+                </div>
+                <!-- /.carousel -->
+
+                <div class="property-detail">
+                    <div class="pull-left overview">
+                        <div class="row">
+                            <div class="span3">
+                                <h2>Vista General</h2>
+
+                                <table>
+                                    <tr>
+                                        <th>Precio:</th>
+                                        <td>$<%= @publicacion.precio %></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tipo contrato:</th>
+                                        <td><%= @publicacion.contrato %></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tipo:</th>
+                                        <td><%= @publicacion.tipo %></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ciudad:</th>
+                                        <td><%= @publicacion.ciudad %></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Baños:</th>
+                                        <td><%= @publicacion.bano %></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Dormitorios:</th>
+                                        <td><%= @publicacion.pieza %></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Superficie:</th>
+                                        <td><%= @publicacion.superficie %>m<sup>2</sup></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.span2 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+
+                    <p><strong><%= @publicacion.descripcion %></strong> </p>
+
+                    <h2>Comodidades Generales</h2>
+
+                    <div class="row">
+                        <ul class="span2">
+                            <li class="<%= @publicacion.aire == true ? 'checked' : 'plain' %>">
+                                Aire Acondicionado
+                            </li>
+                            <li class="<%= @publicacion.balcon == true ? 'checked' : 'plain' %>">
+                                Balcon
+                            </li>
+                            <li class="<%= @publicacion.calefaccion == true ? 'checked' : 'plain' %>">
+                                Calefaccion
+                            </li>
+                            <li class="<%= @publicacion.piscina == true ? 'checked' : 'plain' %>">
+                                Piscina
+                            </li>
+                            <li class="<%= @publicacion.multiuso == true ? 'checked' : 'plain' %>">
+                                Salon Multiuso
+                            </li>
+                            <li class="<%= @publicacion.spa == true ? 'checked' : 'plain' %>">
+                                Spa
+                            </li>
+                            <li class="<%= @publicacion.computacion == true ? 'checked' : 'plain' %>">
+                                Sala Computacion
+                            </li>
+                            <li class="<%= @publicacion.conserje == true ? 'checked' : 'plain' %>">
+                                Conserje
+                            </li>
+                        </ul>
+                        <ul class="span2">
+                            <li class="<%= @publicacion.lavado == true ? 'checked' : 'plain' %>">
+                                Sala Lavado
+                            </li>
+                            <li class="<%= @publicacion.cine == true ? 'checked' : 'plain' %>">
+                                Cine
+                            </li>
+                            <li class="<%= @publicacion.estacionamiento == true ? 'checked' : 'plain' %>">
+                                Estacionamiento Privado
+                            </li>
+                            <li class="<%= @publicacion.visita == true ? 'checked' : 'plain' %>">
+                                Estacionamiento Visitas
+                            </li>
+                            <li class="<%= @publicacion.quincho == true ? 'checked' : 'plain' %>">
+                                Quincho
+                            </li>
+                            <li class="<%= @publicacion.juegos == true ? 'checked' : 'plain' %>">
+                                Salon de Juegos
+                            </li>
+                            <li class="<%= @publicacion.cocina == true ? 'checked' : 'plain' %>">
+                                Cocina Equipada
+                            </li>
+                            <li class="<%= @publicacion.infantiles == true ? 'checked' : 'plain' %>">
+                                Juegos Infantiles
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h2>Map</h2>
+
+                    <div id="property-map"></div><!-- /#property-map -->
+                </div>
+
+            </div>
+            <div class="sidebar span3">
+                <div class="widget our-agents">
+    <div class="title">
+        <h2>Our Agents</h2>
+    </div><!-- /.title -->
+
+    <div class="content">
+        <div class="agent">
+            <div class="image">
+                <img src="assets/img/photos/emma-small.png" alt="">
+            </div><!-- /.image -->
+            <div class="name">Victoria Summer</div><!-- /.name -->
+            <div class="phone">333-666-777</div><!-- /.phone -->
+            <div class="email"><a href="mailto:victoria@example.com">victoria@example.com</a></div><!-- /.email -->
+        </div><!-- /.agent -->
+
+        <div class="agent">
+            <div class="image">
+                <img src="assets/img/photos/john-small.png" alt="">
+            </div><!-- /.image -->
+            <div class="name">John Doe</div><!-- /.name -->
+            <div class="phone">111-222-333</div><!-- /.phone -->
+            <div class="email"><a href="mailto:john.doe@example.com">victoria@example.com</a></div><!-- /.email -->
+        </div><!-- /.agent -->
+    </div><!-- /.content -->
+</div><!-- /.our-agents -->
+                <div class="widget contact">
+    <div class="title">
+        <h2 class="block-title">Contact agent</h2>
+    </div><!-- /.title -->
+
+    <div class="content">
+        <form method="post">
+            <div class="control-group">
+                <label class="control-label" for="inputName">
+                    Name
+                    <span class="form-required" title="This field is required.">*</span>
+                </label>
+                <div class="controls">
+                    <input type="text" id="inputName">
+                </div><!-- /.controls -->
+            </div><!-- /.control-group -->
+
+            <div class="control-group">
+                <label class="control-label" for="inputEmail">
+                    Email
+                    <span class="form-required" title="This field is required.">*</span>
+                </label>
+                <div class="controls">
+                    <input type="text" id="inputEmail">
+                </div><!-- /.controls -->
+            </div><!-- /.control-group -->
+
+            <div class="control-group">
+                <label class="control-label" for="inputMessage">
+                    Message
+                    <span class="form-required" title="This field is required.">*</span>
+                </label>
+
+                <div class="controls">
+                    <textarea id="inputMessage"></textarea>
+                </div><!-- /.controls -->
+            </div><!-- /.control-group -->
+
+            <div class="form-actions">
+                <input type="submit" class="btn btn-primary arrow-right" value="Send">
+            </div><!-- /.form-actions -->
+        </form>
+    </div><!-- /.content -->
+</div><!-- /.widget -->
+                <div class="widget properties last">
+    <div class="title">
+        <h2>Latest Properties</h2>
+    </div><!-- /.title -->
+
+    <div class="content">
+        <div class="property">
+            <div class="image">
+                <a href="detail.html"></a>
+                <img src="assets/img/tmp/property-small-4.png" alt="">
+            </div><!-- /.image -->
+
+            <div class="wrapper">
+                <div class="title">
+                    <h3>
+                        <a href="detail.html">27523 Pacific Coast</a>
+                    </h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location -->
+                <div class="price">€2 300 000</div><!-- /.price -->
+            </div><!-- /.wrapper -->
+        </div><!-- /.property -->
+
+        <div class="property">
+            <div class="image">
+                <a href="detail.html"></a>
+                <img src="assets/img/tmp/property-small-5.png" alt="">
+            </div><!-- /.image -->
+
+            <div class="wrapper">
+                <div class="title">
+                    <h3>
+                        <a href="detail.html">27523 Pacific Coast</a>
+                    </h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location -->
+                <div class="price">€2 300 000</div><!-- /.price -->
+            </div><!-- /.wrapper -->
+        </div><!-- /.property -->
+
+        <div class="property">
+            <div class="image">
+                <a href="detail.html"></a>
+                <img src="assets/img/tmp/property-small-6.png" alt="">
+            </div><!-- /.image -->
+
+            <div class="wrapper">
+                <div class="title">
+                    <h3>
+                        <a href="detail.html">27523 Pacific Coast</a>
+                    </h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location -->
+                <div class="price">€2 300 000</div><!-- /.price -->
+            </div><!-- /.wrapper -->
+        </div><!-- /.property -->
+
+        <div class="property">
+            <div class="image">
+                <a href="detail.html"></a>
+                <img src="assets/img/tmp/property-small-2.png" alt="">
+            </div><!-- /.image -->
+
+            <div class="wrapper">
+                <div class="title">
+                    <h3>
+                        <a href="detail.html">27523 Pacific Coast</a>
+                    </h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location -->
+                <div class="price">€2 300 000</div><!-- /.price -->
+            </div><!-- /.wrapper -->
+        </div><!-- /.property -->
+    </div><!-- /.content -->
+</div><!-- /.properties -->
+            </div>
+        </div>
+    </div>
+</div>
+    </div><!-- /#content -->
+</div><!-- /#wrapper-inner -->
 
 
+
+<%            
+=begin
+  
+rescue %>
+  
+end
 <style>
 #map-canvas {
 height: 300px;
@@ -86,3 +419,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <%= link_to 'Volver', :back %>
     </div>
 </div>
+<%
+=end
+%>

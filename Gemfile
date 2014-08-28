@@ -29,7 +29,9 @@ gem 'lazybox'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+group :assets do
+  gem 'jquery-ui-rails' # jquery ui
+end
 gem 'therubyracer', :platform => :ruby
 #gem 'jquery-turbolinks'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -42,8 +44,7 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
-gem 'devise'
+gem 'devise', '~> 3.3.0'
 
 gem 'haml-rails'
 gem 'simple_form'
