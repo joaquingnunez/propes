@@ -9,3 +9,4 @@ Index:
 -Listar las propiedades
 
 
+-Al crear cuenta mostrar opup de confirmar email, y al fallar mostrar mensaje de error.
