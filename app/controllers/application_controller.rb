@@ -5,14 +5,14 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  protected
+  helper_method :ultimasPropiedades
 
   def ultimasPropiedades
   	result = Publicacion.find(:all, :order => "id desc", :limit => 5)
   end
 
-  @ultimas = Publicacion.find(:all, :order => "id desc", :limit => 5)
-  
+  protected
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :name, :lastname, :birthday) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name,:lastname,:password,:password_confirmation,:current_password) }
