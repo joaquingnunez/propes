@@ -1,3 +1,77 @@
+<div id="content">
+<div class="container">
+
+    <div id="main">
+        <div class="row">
+            <div class="span9">
+                <h1 class="page-header">Propiedades</h1>
+
+                <div class="properties-rows">
+    <div class="row">
+        <% @publicacion.each do |publicacion| %>    
+        <div class="property span9">
+            <div class="row">
+                <div class="image span3">
+                    <div class="content">
+                    <%=link_to "",publicacion%>
+                    <%= image_tag publicacion.smallImage %> 
+                    </div><!-- /.content -->
+                </div><!-- /.image -->
+
+                <div class="body span6">
+                    <div class="title-price row">
+                        <div class="title span4">
+                            <h2><%= link_to publicacion.direccion, publicacion %></h2>
+                        </div><!-- /.title -->
+
+                        <div class="price">
+                            $<%= publicacion.precio %>
+                        </div><!-- /.price -->
+                    </div><!-- /.title -->
+
+                    <div class="location"><%= publicacion.ciudad %></div><!-- /.location -->
+                    <p>
+                        <%= truncate publicacion.descripcion, length: 135 %>
+                    </p>
+                    <div class="area">
+                        <span class="key">Superficie(mts<sup>2</sup>):</span><!-- /.key -->
+                        <span class="value"><%= publicacion.superficie %></span><!-- /.value -->
+                    </div><!-- /.area -->
+                    <div class="bedrooms">
+                    <div class="content"><%= publicacion.pieza %></div>
+                    </div><!-- /.bedrooms -->
+                    <div class="bathrooms">
+                    <div class="content"><%= publicacion.bano %></div>
+                    </div><!-- /.bathrooms -->
+                     <%=link_to "Editar",edit_publicacion_path(publicacion), { :class=>"btn btn-primary" }%>
+                    <a href="listing-grid.html"><button type="button" class="btn btn-primary">Activar</button></a>
+                    <%=link_to "Eliminar", {method: :delete} , data: { confirm: '¿Eliminar Propiedad?' }, :class=>"btn btn-danger" %>
+                </div><!-- /.body -->
+            </div><!-- /.property -->
+        </div><!-- /.row -->
+         <% end %>
+    </div><!-- /.row -->
+</div><!-- /.properties-rows -->
+                <div class="pagination pagination-centered">
+    <ul>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li class="active"><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">next</a></li>
+        <li><a href="#">last</a></li>
+    </ul>
+</div><!-- /.pagination -->            </div>
+        </div>
+    </div>
+</div>
+
+    </div><!-- /#content -->
+</div><!-- /#wrapper-inner -->
+
+<%
+=begin
+%>
 <div id="main_content">
     
     
@@ -34,20 +108,8 @@
     </div>
 </div>
 
-<div id="footer">
-
-  <div id="copyright">
-    <div style="float:left; padding:3px;"><a href="#"><img src="images/footer_logo.gif" width="42" height="35" alt="" title="" border="0" /></a></div>
-    <div style="float:left; padding:14px 10px 10px 10px;"> Company name.&copy; All Rights Reserved 2008 - By <a href="http://csscreme.com" style="color:#772c17;">csscreme</a></div>
-    </div>
-    <ul class="footer_menu">
-      <li><a href="index.html" class="nav_footer">  Home </a></li>
-        <li><a href="#" class="nav_footer">  Selling Homes </a></li>
-        <li><a href="" class="nav_footer">  Buying Homes </a></li>
-        <li><a href="" class="nav_footer">  Renting Homes</a></li>
-        <li><a href="" class="nav_footer">  RSS </a></li>
-        <li><a href="" class="nav_footer">  Contact </a></li>
-    </ul>
 
 </div>
-</div>
+<%
+=end
+%>

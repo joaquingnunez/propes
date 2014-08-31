@@ -16,6 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'mailboxer'
 gem 'carrierwave', '>= 0.5.3'
+gem "mini_magick"
+gem 'rmagick'
 gem 'nested_form'
 gem "ransack"
 gem 'kaminari'

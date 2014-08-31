@@ -122,15 +122,9 @@
                                         <li><a href="index-carousel.html">Homepage with carousel</a></li>
                                     </ul>
                                 </li>
-                                <li class="menuparent">
-                                    <span class="menuparent nolink">Listing</span>
-                                    <ul>
-                                        <li><a href="listing-grid.html">Listing grid</a></li>
-                                        <li><a href="listing-grid-filter.html">Listing grid with filter</a></li>
-                                        <li><a href="listing-rows.html">Listing rows</a></li>
-                                        <li><a href="listing-rows-filter.html" >Listing rows with filter</a></li>
-                                    </ul>
-                                </li>
+                                <% if user_signed_in? %>
+                                <li><%= link_to "Gestionar Propiedades", publicacions_path %></li>
+                                <% end %>
                                 <li class="menuparent">
                                     <span class="menuparent nolink">Pages</span>
                                     <ul>
@@ -182,57 +176,27 @@
             <div class="row">
                 <div class="widget properties span3">
                     <div class="title">
-                        <h2>Más Recientes</h2>
+                        <h2>Propiedades Recientes</h2>
                     </div><!-- /.title -->
 
                     <div class="content">
+                        <% @ultimas.each do |ultima| %>   
                         <div class="property">
                             <div class="image">
-                                <a href="detail.html"></a>
-                                <img src="assets/img/tmp/property-small-1.png" alt="">
+                                <%=link_to "",ultima%>
+                                <%= image_tag ultima.smallImage %> 
                             </div><!-- /.image -->
                             <div class="wrapper">
                                 <div class="title">
                                     <h3>
-                                        <a href="detail.html">27523 Pacific Coast</a>
+                                        <%= link_to truncate(ultima.direccion, :length => 23), ultima %>
                                     </h3>
                                 </div><!-- /.title -->
-                                <div class="location">Palo Alto CA</div><!-- /.location -->
-                                <div class="price">€2 300 000</div><!-- /.price -->
+                                <div class="location"><%= ultima.ciudad %></div><!-- /.location -->
+                                <div class="price">$<%= ultima.precio %></div><!-- /.price -->
                             </div><!-- /.wrapper -->
                         </div><!-- /.property -->
-
-                        <div class="property">
-                            <div class="image">
-                                <a href="detail.html"></a>
-                                <img src="assets/img/tmp/property-small-2.png" alt="">
-                            </div><!-- /.image -->
-                            <div class="wrapper">
-                                <div class="title">
-                                    <h3>
-                                        <a href="detail.html">27523 Pacific Coast</a>
-                                    </h3>
-                                </div><!-- /.title -->
-                                <div class="location">Palo Alto CA</div><!-- /.location -->
-                                <div class="price">€2 300 000</div><!-- /.price -->
-                            </div><!-- /.wrapper -->
-                        </div><!-- /.property -->
-
-                        <div class="property">
-                            <div class="image">
-                                <a href="detail.html"></a>
-                                <img src="assets/img/tmp/property-small-3.png" alt="">
-                            </div><!-- /.image -->
-                            <div class="wrapper">
-                                <div class="title">
-                                    <h3>
-                                        <a href="detail.html">27523 Pacific Coast</a>
-                                    </h3>
-                                </div><!-- /.title -->
-                                <div class="location">Palo Alto CA</div><!-- /.location -->
-                                <div class="price">€2 300 000</div><!-- /.price -->
-                            </div><!-- /.wrapper -->
-                        </div><!-- /.property -->
+                        <% end %>
                     </div><!-- /.content -->
                 </div><!-- /.properties-small -->
 

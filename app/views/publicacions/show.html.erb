@@ -1,3 +1,90 @@
+<script>
+
+function LoadMapProperty() {
+    var lat= <%= @publicacion.latitude %>;
+    var log= <%= @publicacion.longitude %>;
+    var locations = new Array(
+        [lat,log]
+    );
+    var markers = new Array();
+    var mapOptions = {
+        center: new google.maps.LatLng(lat, log),
+        zoom: 14,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        scrollwheel: false
+    };
+
+    var map = new google.maps.Map(document.getElementById('mapa-propiedad'), mapOptions);
+
+    $.each(locations, function(index, location) {
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(location[0], location[1]),
+            map: map,
+            icon: ' '
+        });
+
+        var myOptions = {
+            disableAutoPan: false,
+            maxWidth: 0,
+            pixelOffset: new google.maps.Size(-146, -190),
+            zIndex: null,
+            closeBoxURL: "",
+            infoBoxClearance: new google.maps.Size(1, 1),
+            position: new google.maps.LatLng(location[0], location[1]),
+            isHidden: false,
+            pane: "floatPane",
+            enableEventPropagation: false
+        };
+        marker.infobox = new InfoBox(myOptions);
+        marker.infobox.isOpen = false;
+
+        var myOptions = {
+            draggable: true,
+            content: '<div class="marker"><div class="marker-inner"></div></div>',
+            disableAutoPan: true,
+            pixelOffset: new google.maps.Size(-21, -58),
+            position: new google.maps.LatLng(location[0], location[1]),
+            closeBoxURL: "",
+            isHidden: false,
+            // pane: "mapPane",
+            enableEventPropagation: true
+        };
+        marker.marker = new InfoBox(myOptions);
+        marker.marker.open(map, marker);
+        markers.push(marker);
+
+        google.maps.event.addListener(marker, "click", function (e) {
+            var curMarker = this;
+
+            $.each(markers, function (index, marker) {
+                // if marker is not the clicked marker, close the marker
+                if (marker !== curMarker) {
+                    marker.infobox.close();
+                    marker.infobox.isOpen = false;
+                }
+            });
+
+
+            if(curMarker.infobox.isOpen === false) {
+                curMarker.infobox.open(map, this);
+                curMarker.infobox.isOpen = true;
+                map.panTo(curMarker.getPosition());
+            } else {
+                curMarker.infobox.close();
+                curMarker.infobox.isOpen = false;
+            }
+
+        });
+    });
+}
+
+function InitMap() {
+    if ($('#mapa-propiedad').length !== 0) {
+        google.maps.event.addDomListener(window, 'load', LoadMapProperty);
+    }
+}
+</script>
+
 <div id="wrapper-outer" >
     <div id="wrapper">
         <div id="wrapper-inner">
@@ -10,7 +97,7 @@
 
                 <div class="carousel property">
                     <div class="preview">
-                        <img src="assets/img/tmp/property-large-1.jpg" alt="">
+                        <%= image_tag @publicacion.largeImage, :alt => "" %> 
                     </div><!-- /.preview -->
 
                     <div class="content">
@@ -18,48 +105,11 @@
                         <a class="carousel-prev" href="#">Previous</a>
                         <a class="carousel-next" href="#">Next</a>
                         <ul>
-                            <li class="active">
-                                <img src="assets/img/tmp/property-large-1.jpg" alt="">
-                            </li>
-                            <li>
-                                <img src="assets/img/tmp/property-large-2.jpg" alt="">
-                            </li>
-                            <li>
-                                <img src="assets/img/tmp/property-large-3.jpg" alt="">
-                            </li>
-                            <li>
-                                <img src="assets/img/tmp/property-large-4.jpg" alt="">
-                            </li>
-                            <li>
-                                <img src="assets/img/tmp/property-large-1.jpg" alt="">
-                            </li>
-                            <li>
-                                <img src="assets/img/tmp/property-large-2.jpg" alt="">
-                            </li>
-                            <li>
-                                <img src="assets/img/tmp/property-large-3.jpg" alt="">
-                            </li>
-                            <li>
-                                <img src="assets/img/tmp/property-large-4.jpg" alt="">
-                            </li>
-                            <li>
-                                <img src="assets/img/tmp/property-large-1.jpg" alt="">
-                            </li>
-                            <li>
-                                <img src="assets/img/tmp/property-large-2.jpg" alt="">
-                            </li>
-                            <li>
-                                <img src="assets/img/tmp/property-large-3.jpg" alt="">
-                            </li>
-                            <li>
-                                <img src="assets/img/tmp/property-large-4.jpg" alt="">
-                            </li>
-                            <li>
-                                <img src="assets/img/tmp/property-large-1.jpg" alt="">
-                            </li>
-                            <li>
-                                <img src="assets/img/tmp/property-large-2.jpg" alt="">
-                            </li>
+                            <% for attachment in @publicacion.attachments %>
+                                <li>
+                                    <%= image_tag attachment.file_url(:large), :alt => "" %>
+                                </li>
+                            <% end %>
                         </ul>
                     </div>
                     <!-- /.content -->
@@ -100,6 +150,19 @@
                                     <tr>
                                         <th>Superficie:</th>
                                         <td><%= @publicacion.superficie %>m<sup>2</sup></td>
+                                    </tr>
+                                </table>
+
+                                 <h2 style="padding-top: 20px;">Datos de Contacto</h2>
+
+                                <table>
+                                    <tr>
+                                        <th>Nombre:</th>
+                                        <td><%= current_user.name %> <%= current_user.lastname %></td>
+                                    </tr>
+                                    <tr>
+                                        <th>E-mail:</th>
+                                        <td><%= current_user.email %></td>
                                     </tr>
                                 </table>
                             </div>
@@ -169,153 +232,35 @@
 
                     <h2>Map</h2>
 
-                    <div id="property-map"></div><!-- /#property-map -->
+                    <div id="mapa-propiedad"></div><!-- /#property-map -->
                 </div>
 
             </div>
             <div class="sidebar span3">
-                <div class="widget our-agents">
-    <div class="title">
-        <h2>Our Agents</h2>
-    </div><!-- /.title -->
-
-    <div class="content">
-        <div class="agent">
-            <div class="image">
-                <img src="assets/img/photos/emma-small.png" alt="">
-            </div><!-- /.image -->
-            <div class="name">Victoria Summer</div><!-- /.name -->
-            <div class="phone">333-666-777</div><!-- /.phone -->
-            <div class="email"><a href="mailto:victoria@example.com">victoria@example.com</a></div><!-- /.email -->
-        </div><!-- /.agent -->
-
-        <div class="agent">
-            <div class="image">
-                <img src="assets/img/photos/john-small.png" alt="">
-            </div><!-- /.image -->
-            <div class="name">John Doe</div><!-- /.name -->
-            <div class="phone">111-222-333</div><!-- /.phone -->
-            <div class="email"><a href="mailto:john.doe@example.com">victoria@example.com</a></div><!-- /.email -->
-        </div><!-- /.agent -->
-    </div><!-- /.content -->
-</div><!-- /.our-agents -->
-                <div class="widget contact">
-    <div class="title">
-        <h2 class="block-title">Contact agent</h2>
-    </div><!-- /.title -->
-
-    <div class="content">
-        <form method="post">
-            <div class="control-group">
-                <label class="control-label" for="inputName">
-                    Name
-                    <span class="form-required" title="This field is required.">*</span>
-                </label>
-                <div class="controls">
-                    <input type="text" id="inputName">
-                </div><!-- /.controls -->
-            </div><!-- /.control-group -->
-
-            <div class="control-group">
-                <label class="control-label" for="inputEmail">
-                    Email
-                    <span class="form-required" title="This field is required.">*</span>
-                </label>
-                <div class="controls">
-                    <input type="text" id="inputEmail">
-                </div><!-- /.controls -->
-            </div><!-- /.control-group -->
-
-            <div class="control-group">
-                <label class="control-label" for="inputMessage">
-                    Message
-                    <span class="form-required" title="This field is required.">*</span>
-                </label>
-
-                <div class="controls">
-                    <textarea id="inputMessage"></textarea>
-                </div><!-- /.controls -->
-            </div><!-- /.control-group -->
-
-            <div class="form-actions">
-                <input type="submit" class="btn btn-primary arrow-right" value="Send">
-            </div><!-- /.form-actions -->
-        </form>
-    </div><!-- /.content -->
-</div><!-- /.widget -->
+                
                 <div class="widget properties last">
     <div class="title">
-        <h2>Latest Properties</h2>
+        <h2>Propiedades Recientes</h2>
     </div><!-- /.title -->
-
     <div class="content">
+    <% @ultimas.each do |ultima| %>   
         <div class="property">
             <div class="image">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-4.png" alt="">
+                <%=link_to "",ultima%>
+                <%= image_tag ultima.smallImage %> 
             </div><!-- /.image -->
 
             <div class="wrapper">
                 <div class="title">
                     <h3>
-                        <a href="detail.html">27523 Pacific Coast</a>
+                        <%= link_to truncate(ultima.direccion, :length => 23), ultima %>
                     </h3>
                 </div><!-- /.title -->
-                <div class="location">Palo Alto CA</div><!-- /.location -->
-                <div class="price">€2 300 000</div><!-- /.price -->
+                <div class="location"><%= ultima.ciudad %></div><!-- /.location -->
+                <div class="price">$<%= ultima.precio %></div><!-- /.price -->
             </div><!-- /.wrapper -->
         </div><!-- /.property -->
-
-        <div class="property">
-            <div class="image">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-5.png" alt="">
-            </div><!-- /.image -->
-
-            <div class="wrapper">
-                <div class="title">
-                    <h3>
-                        <a href="detail.html">27523 Pacific Coast</a>
-                    </h3>
-                </div><!-- /.title -->
-                <div class="location">Palo Alto CA</div><!-- /.location -->
-                <div class="price">€2 300 000</div><!-- /.price -->
-            </div><!-- /.wrapper -->
-        </div><!-- /.property -->
-
-        <div class="property">
-            <div class="image">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-6.png" alt="">
-            </div><!-- /.image -->
-
-            <div class="wrapper">
-                <div class="title">
-                    <h3>
-                        <a href="detail.html">27523 Pacific Coast</a>
-                    </h3>
-                </div><!-- /.title -->
-                <div class="location">Palo Alto CA</div><!-- /.location -->
-                <div class="price">€2 300 000</div><!-- /.price -->
-            </div><!-- /.wrapper -->
-        </div><!-- /.property -->
-
-        <div class="property">
-            <div class="image">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-2.png" alt="">
-            </div><!-- /.image -->
-
-            <div class="wrapper">
-                <div class="title">
-                    <h3>
-                        <a href="detail.html">27523 Pacific Coast</a>
-                    </h3>
-                </div><!-- /.title -->
-                <div class="location">Palo Alto CA</div><!-- /.location -->
-                <div class="price">€2 300 000</div><!-- /.price -->
-            </div><!-- /.wrapper -->
-        </div><!-- /.property -->
+        <% end %>
     </div><!-- /.content -->
 </div><!-- /.properties -->
             </div>

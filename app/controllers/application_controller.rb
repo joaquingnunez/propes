@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def ultimasPropiedades
+  	result = Publicacion.find(:all, :order => "id desc", :limit => 5)
+  end
+  
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :name, :lastname, :birthday) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name,:lastname,:password,:password_confirmation,:current_password) }
