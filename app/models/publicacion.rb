@@ -14,6 +14,7 @@ class Publicacion < ActiveRecord::Base
         }
         client = Twitter::REST::Client.new(config)
     end
+    
     def smallImage
     	imagen = self.attachments.last.file_url(:small)
     end
@@ -21,4 +22,9 @@ class Publicacion < ActiveRecord::Base
     def largeImage
       imagen = self.attachments.last.file_url(:large)
     end
+
+    def ultimasPropiedades
+    result = Publicacion.find(:all, :order => "id desc", :limit => 5)
+  end
+
 end
