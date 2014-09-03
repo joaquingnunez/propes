@@ -25,6 +25,7 @@ class Publicacion < ActiveRecord::Base
 
     def ultimasPropiedades
     result = Publicacion.find(:all, :order => "id desc", :limit => 5)
+    return result
     end
 
 end
