@@ -156,6 +156,7 @@
         <h2>Propiedades Recientes</h2>
     </div><!-- /.title -->
     <div class="content">
+    <% unless @ultimas.nil? %>
     <% @ultimas.each do |ultima| %>   
         <div class="property">
             <div class="image">
@@ -173,6 +174,7 @@
                 <div class="price">$<%= ultima.precio %></div><!-- /.price -->
             </div><!-- /.wrapper -->
         </div><!-- /.property -->
+        <% end %>
         <% end %>
     </div><!-- /.content -->
 </div><!-- /.properties -->
