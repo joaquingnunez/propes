@@ -7,7 +7,7 @@ class PublicacionsController < ApplicationController
   # GET /publicacions.json
   def index
     @user = current_user
-    @publicacion =  @user.publicacions.all
+    @publicacion =  Publicacion.all
   end
 
   # GET /publicacions/1
