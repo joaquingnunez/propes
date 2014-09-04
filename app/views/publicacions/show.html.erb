@@ -242,9 +242,7 @@ function InitMap() {
         <h2>Propiedades Recientes</h2>
     </div><!-- /.title -->
     <div class="content">
-<%
-=begin
-%>
+
     <% unless @ultimas.nil? %>
     <% @ultimas.each do |ultima| %>   
         <div class="property">
@@ -265,9 +263,6 @@ function InitMap() {
         </div><!-- /.property -->
         <% end %>
         <% end %>
-<%
-=end
-%>
     </div><!-- /.content -->
 </div><!-- /.properties -->
             </div>
