@@ -13,7 +13,7 @@ class PublicacionsController < ApplicationController
   # GET /publicacions/1
   # GET /publicacions/1.json
   def show
-    @ultimas = Publicacion.ultimasPropiedades
+    @ultimas = ultimasPropiedades
   end
 
   # GET /publicacions/new
