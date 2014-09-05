@@ -16,11 +16,11 @@ class Publicacion < ActiveRecord::Base
     end
 
     def smallImage
-    	imagen = self.attachment.last.file_url(:small)
+    	imagen = self.attachments.last.file_url(:small)
     end
 
     def largeImage
-      imagen = self.attachment.last.file_url(:large)
+      imagen = self.attachments.last.file_url(:large)
     end
 
     def ultimasPropiedades
