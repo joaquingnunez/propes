@@ -184,6 +184,7 @@
                         <% ultimasPropiedades.each do |ultima| %>   
                         <div class="property">
                             <div class="image">
+                            <% if ultima != nil %>
                                 <%=link_to "",ultima%>
                                 <% if ultima.smallImage != nil %>
                                 <%= image_tag ultima.smallImage %> 
@@ -199,6 +200,7 @@
                                 <div class="price">$<%= ultima.precio %></div><!-- /.price -->
                             </div><!-- /.wrapper -->
                         </div><!-- /.property -->
+                        <% end %>
                         <% end %>
                     </div><!-- /.content -->
                 </div><!-- /.properties-small -->
