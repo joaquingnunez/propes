@@ -106,13 +106,13 @@ function InitMap() {
                         <a class="carousel-prev" href="#">Previous</a>
                         <a class="carousel-next" href="#">Next</a>
                         <ul>
+                         <% if @publicacion.attachments != nil %>
                             <% for attachment in @publicacion.attachments %>
-                                <% if @publicacion.largeImage != nil %>
-                                    <li>
-                                        <%= image_tag attachment.file_url(:large), :alt => "" %>
-                                    </li>
-                                <% end %>
+                                <li>
+                                    <%= image_tag attachment.file_url(:large), :alt => "" %>
+                                </li>
                             <% end %>
+                        <% end %>
                         </ul>
                     </div>
                     <!-- /.content -->
