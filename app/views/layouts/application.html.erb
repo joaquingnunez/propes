@@ -185,7 +185,9 @@
                         <div class="property">
                             <div class="image">
                                 <%=link_to "",ultima%>
+                                <% if ultima.smallImage != nil %>
                                 <%= image_tag ultima.smallImage %> 
+                                <% end %>
                             </div><!-- /.image -->
                             <div class="wrapper">
                                 <div class="title">

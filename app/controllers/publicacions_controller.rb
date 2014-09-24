@@ -7,12 +7,13 @@ class PublicacionsController < ApplicationController
   # GET /publicacions.json
   def index
     @user = current_user
-    @publicacion =  Publicacion.all
+    @publicacion =  Publicacion.all.order! 'created_at DESC'
   end
 
   # GET /publicacions/1
   # GET /publicacions/1.json
   def show
+    @user = User.find_by_id(@publicacion.user_id)
   end
 
   # GET /publicacions/new
@@ -77,6 +78,16 @@ class PublicacionsController < ApplicationController
     end
   end
 
+   def cambiar_estado
+      @publicacion = Publicacion.find_by_id(params[:publicacion][:id])
+      estado = !@publicacion.estado
+      @publicacion.update_attributes({:estado => estado})
+        respond_to do |format|
+          format.html { redirect_to publicacions_url }
+          format.js
+        end
+     end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_publicacion
@@ -92,8 +103,9 @@ class PublicacionsController < ApplicationController
        end
      end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def publicacion_params
-      params.require(:publicacion).permit(:pieza, :direccion, :precio, :bano, :estacionamiento, :tipo, :ciudad, :region, :comparte, :md, :latitude, :longitude,:titulo, :descripcion, :aire, :balcon, :calefaccion, :piscina, :multiuso, :spa, :computacion, :conserje, :lavado, :cine, :visita, :quincho, :juegos, :cocina, :infantiles, :superficie, :contrato, attachments_attributes: [:id, :file, :file_cache, :_destroy])
+      params.require(:publicacion).permit(:pieza, :direccion, :precio, :bano, :estacionamiento, :tipo, :ciudad, :region, :comparte, :md, :latitude, :longitude,:titulo, :descripcion, :aire, :balcon, :calefaccion, :piscina, :multiuso, :spa, :computacion, :conserje, :lavado, :cine, :visita, :quincho, :juegos, :cocina, :infantiles, :superficie, :contrato, :estado,attachments_attributes: [:id, :file, :file_cache, :_destroy])
     end
 end

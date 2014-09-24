@@ -4,6 +4,7 @@ class Publicacion < ActiveRecord::Base
 	validates :titulo, :descripcion, :region, :ciudad, :direccion, presence: true
 	has_many :attachments, :as => :attachable
 	accepts_nested_attributes_for :attachments,:allow_destroy => true
+  before_update :check_map
 
 	def twitter
 		config = {
@@ -26,6 +27,13 @@ class Publicacion < ActiveRecord::Base
     def ultimasPropiedades
     result = Publicacion.find(:all, :order => "id desc", :limit => 5)
     return result
+    end
+
+    def check_map
+    if self.latitude == 1
+      self.latitude = latitude_was
+      self.longitude = longitude_was
+    end
     end
 
 end

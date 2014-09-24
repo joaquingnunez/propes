@@ -4,6 +4,9 @@
 -el Say hello hacer que envíe un email
 -Gestionar Propiedades
 -Listar las propiedades
--Al guardar la propiedad, guardar de manera oculta el nombre, email y telefono(agregar columna a la tabla user), a la publicacion del usuario que la creó
+
+-Agregar columna telefono a la tabla user
 
 -Al crear cuenta mostrar opup de confirmar email, y al fallar mostrar mensaje de error, mostrar errores en general
+
+-Comprobar que se haya subido fotos a la propiedad

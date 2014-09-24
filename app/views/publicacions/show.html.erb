@@ -96,7 +96,9 @@ function InitMap() {
 
                 <div class="carousel property">
                     <div class="preview">
+                    <% if @publicacion.largeImage != nil %>
                         <%= image_tag @publicacion.largeImage, :alt => "" %> 
+                        <% end %>
                     </div><!-- /.preview -->
 
                     <div class="content">
@@ -105,9 +107,11 @@ function InitMap() {
                         <a class="carousel-next" href="#">Next</a>
                         <ul>
                             <% for attachment in @publicacion.attachments %>
-                                <li>
-                                    <%= image_tag attachment.file_url(:large), :alt => "" %>
-                                </li>
+                                <% if @publicacion.largeImage != nil %>
+                                    <li>
+                                        <%= image_tag attachment.file_url(:large), :alt => "" %>
+                                    </li>
+                                <% end %>
                             <% end %>
                         </ul>
                     </div>
@@ -157,11 +161,11 @@ function InitMap() {
                                 <table>
                                     <tr>
                                         <th>Nombre:</th>
-                                        <td>Joaquin Gonzalez Nuñez</td>
+                                        <td><%= @user.name %> <%= @user.lastname %></td>
                                     </tr>
                                     <tr>
                                         <th>E-mail:</th>
-                                        <td>joaquin.gonzalez.n@gmail.com</td>
+                                        <td><%= @user.email %></td>
                                     </tr>
                                 </table>
                             </div>

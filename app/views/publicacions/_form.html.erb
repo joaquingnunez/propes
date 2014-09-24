@@ -7,8 +7,21 @@
   $(function(){
             
             $("#test").gmap3({
+     <% unless @publicacion.latitude.nil? %>         
+     marker:{
+    latLng: [<%= @publicacion.latitude %>, <%= @publicacion.longitude %>]
+  },
+  <% else %>
+   marker:{
+    latLng: [-33.442909, -70.653870]
+  },
+  <% end %>
     map:{
-      address:"Santiago Centro, CHILE",
+      <% if @publicacion.latitude.nil? %>
+      latLng: [-33.437844, -70.650480],
+      <% else %>
+      latLng: [<%= @publicacion.latitude %>, <%= @publicacion.longitude %>],
+      <% end %>
       options:{
         zoom:14,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -122,7 +135,7 @@
                             <span class="form-required" title="Este campo es requerido.">*</span>
                         </label>
                         <div class="controls">
-                            <%= f.input :tipo, :collection => ["Departamento","Casa"], :selected => "Departamento", :id =>"inputPropertyPropertyType",input_html: { class: "form_select" },label: false   %>
+                            <%= f.input :tipo, :collection => ["Departamento","Casa"], :id =>"inputPropertyPropertyType",input_html: { class: "form_select" },label: false   %>
                         </div><!-- /.controls -->
                     </div><!-- /.control-group -->
 
@@ -132,7 +145,7 @@
                             <span class="form-required" title="Este campo es requerido.">*</span>
                         </label>
                         <div class="controls">
-                            <%= f.input :contrato, label: false, :collection => ["Venta","Arriendo"], :selected => "Venta", :id => "inputPropertyContractType",input_html: { class: "form_select" }  %>
+                            <%= f.input :contrato, label: false, :collection => ["Venta","Arriendo"], :id => "inputPropertyContractType",input_html: { class: "form_select" }  %>
                         </div><!-- /.controls -->
                     </div><!-- /.control-group -->
 
@@ -142,7 +155,7 @@
                             <span class="form-required" title="Este campo es requerido.">*</span>
                         </label>
                         <div class="controls">
-                            <%= f.input :pieza, label: false, collection: 0..8, :selected =>"1"  %>
+                            <%= f.input :pieza, label: false, collection: 0..8 %>
                         </div><!-- /.controls -->
                     </div><!-- /.control-group -->
 
@@ -152,7 +165,7 @@
                             <span class="form-required" title="Este campo es requerido.">*</span>
                         </label>
                         <div class="controls">
-                            <%= f.input :bano, label: false, collection: 0..5, :selected =>"1"  %>
+                            <%= f.input :bano, label: false, collection: 0..5 %>
                         </div><!-- /.controls -->
                     </div><!-- /.control-group -->
 
@@ -314,9 +327,10 @@
   <%= f.input :region, input_html: { value: 'Los Lagos'},as: :hidden %>
   </div>
   <center><h3><strong>4.</strong> <span>Mapa</span></h3></center>
-               <%=f.input :direccion, label: false,:input_html =>{:id => 'address',:size => '120'}, :placeholder => 'Ingrese la dirección de la propiedad' %>
+  <%=f.input :direccion, label: false,:input_html =>{:id => 'address',:size => '120'}, :placeholder => 'Ingrese la dirección de la propiedad' %>
     <div id="test" class="gmap3"></div>
      <%= f.input :latitude, input_html: { value: '1', :id => 'gmaps-output-latitudes'}, as: :hidden %>
   <%= f.input :longitude, input_html: { value: '1', :id => 'gmaps-output-longitudes'},as: :hidden %>
+  <%= f.input :estado,as: :hidden %>
    <center><%= f.submit "Publicar", class: "btn btn-primary btn-large"%></center>
 <% end %>

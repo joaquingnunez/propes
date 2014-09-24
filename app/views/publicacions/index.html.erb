@@ -14,7 +14,9 @@
                 <div class="image span3">
                     <div class="content">
                     <%=link_to "",publicacion%>
-                    <%= image_tag publicacion.smallImage %> 
+                    <% if publicacion.smallImage != nil %>
+                    <%= image_tag publicacion.smallImage %>
+                    <% end %> 
                     </div><!-- /.content -->
                 </div><!-- /.image -->
 
@@ -43,8 +45,16 @@
                     <div class="bathrooms">
                     <div class="content"><%= publicacion.bano %></div>
                     </div><!-- /.bathrooms -->
+                    <%= simple_form_for publicacion, :url => url_for(:action => 'cambiar_estado', :controller => 'publicacions'),
+                     :method => 'post'  do |f| %>
+                     <div><%= f.hidden_field :id %></div>
+                     <% if publicacion.estado %>
+                      <%= f.submit "Pausar", class: "btn btn-primary" %>
+                      <% else %>
+                      <%= f.submit "Activar", class: "btn btn-primary" %>
+                     <% end %>
+                     <% end %>
                      <%=link_to "Editar",edit_publicacion_path(publicacion), { :class=>"btn btn-primary" }%>
-                    <a href="listing-grid.html"><button type="button" class="btn btn-primary">Activar</button></a>
                     <%=link_to "Eliminar", {method: :delete} , data: { confirm: '¿Eliminar Propiedad?' }, :class=>"btn btn-danger" %>
                 </div><!-- /.body -->
             </div><!-- /.property -->
