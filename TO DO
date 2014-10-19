@@ -2,11 +2,16 @@
 -Que funcione el Buscador
 -Propiedades destacadas hacerla dinamica
 -el Say hello hacer que envíe un email
--Gestionar Propiedades
 -Listar las propiedades
 
 -Agregar columna telefono a la tabla user
 
 -Al crear cuenta mostrar opup de confirmar email, y al fallar mostrar mensaje de error, mostrar errores en general
 
--Comprobar que se haya subido fotos a la propiedad
+-Comprobar que se haya subido fotos a la propiedad; atributo:attachments_attributes
+
+-Search:
+Pagina principal hacer busqueda y redireccionar a listing-rows-filter con los resultados y 
+filtros ingresados.
+
+

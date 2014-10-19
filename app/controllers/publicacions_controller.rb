@@ -7,7 +7,7 @@ class PublicacionsController < ApplicationController
   # GET /publicacions.json
   def index
     @user = current_user
-    @publicacion =  Publicacion.all.order! 'created_at DESC'
+    @publicacion =  @user.publicacions.order! 'created_at DESC'
   end
 
   # GET /publicacions/1
@@ -65,8 +65,13 @@ class PublicacionsController < ApplicationController
     if user_signed_in?
       @user = current_user
     end
-    @search = Publicacion.search(params[:q])
-    @publicacion=@search.result.page(params[:page]).per(5)
+    if params[:searchParams] #Llegan parametros por el welcome
+      @search = Publicacion.search(params[:searchParams])
+      @publicacion=@search.result.page(params[:page]).per(2)
+    else
+      @search = Publicacion.search(params[:q])
+      @publicacion=@search.result.page(params[:page]).per(2)
+    end
   end
   # DELETE /publicacions/1
   # DELETE /publicacions/1.json

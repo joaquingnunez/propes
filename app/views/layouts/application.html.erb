@@ -75,7 +75,6 @@
                                             <div class="logo">
                                             <%=link_to( image_tag("logo.png", :alt => "Home", :title => "Home"),root_path )%>
                                             </div><!-- /.logo -->
-
                                             <div class="site-name">
                                             <%=link_to "Propest",root_path, { :class=>"brand", :title=>"Home" }%>
                                             </div><!-- /.site-name -->
@@ -126,21 +125,10 @@
                                 <li><%= link_to "Gestionar Propiedades", publicacions_path %></li>
                                 <% end %>
                                 <li class="menuparent">
-                                    <span class="menuparent nolink">Pages</span>
+                                    <span class="menuparent nolink">Mi Cuenta</span>
                                     <ul>
-                                        <li><a href="about-us.html">About us</a></li>
-                                        <li><a href="our-agents.html">Our agents</a></li>
+                                        <li><%= link_to "Editar Cuenta", edit_user_registration_path %></li>
                                         <li><a href="faq.html">FAQ</a></li>
-                                        <li><a href="shortcodes.html">Shortcodes</a></li>
-                                        <li class="menuparent">
-                                            <span class="menuparent nolink">Another level</span>
-                                            <ul>
-                                                <li><a href="contact-us.html">Contact us</a></li>
-                                                <li><a href="grid-system.html">Grid system</a></li>
-                                                <li><a href="typography.html">Typography</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="404.html">404 page</a></li>
                                     </ul>
                                 </li>
                                 <li class="menuparent">

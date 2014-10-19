@@ -1,5 +1,33 @@
-      <tr class="even">
-        <td><%= link_to publicacion.titulo, publicacion %></td>
-        <td><%= publicacion.precio %></td>
-        <td><%= publicacion.created_at.strftime("%d-%m-%Y") %></td>
-      </tr>
+   <div class="property span9">
+            <div class="row">
+                <div class="image span3">
+                    <div class="content">
+                        <%=link_to "",publicacion%>
+                        <% if publicacion.attachments != nil %>
+                                <%= image_tag publicacion.smallImage %> 
+                                <% end %>
+                    </div><!-- /.content -->
+                </div><!-- /.image -->
+
+                <div class="body span6">
+                    <div class="title-price row">
+                        <div class="title span4">
+                            <h2><%= link_to publicacion.titulo, publicacion %></h2>
+                        </div><!-- /.title -->
+
+                        <div class="price">
+                            $<%= publicacion.precio %>
+                        </div><!-- /.price -->
+                    </div><!-- /.title -->
+
+                    <div class="location"><%= publicacion.ciudad %></div><!-- /.location -->
+                    <p> <%= truncate(publicacion.descripcion, :length => 135 )%></p>
+                    <div class="area">
+                        <span class="key">Superficie:</span><!-- /.key -->
+                        <span class="value"><%= publicacion.superficie %>m<sup>2</sup></span><!-- /.value -->
+                    </div><!-- /.area -->
+                    <div class="bedrooms"><div class="content"><%= publicacion.pieza %></div></div><!-- /.bedrooms -->
+                    <div class="bathrooms"><div class="content"><%= publicacion.bano %></div></div><!-- /.bathrooms -->
+                </div><!-- /.body -->
+            </div><!-- /.property -->
+        </div><!-- /.row -->

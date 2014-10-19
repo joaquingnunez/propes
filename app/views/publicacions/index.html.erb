@@ -16,6 +16,8 @@
                     <%=link_to "",publicacion%>
                     <% if publicacion.smallImage != nil %>
                     <%= image_tag publicacion.smallImage %>
+                    <% else %>
+                    <%= image_tag "no-image.gif" %>
                     <% end %> 
                     </div><!-- /.content -->
                 </div><!-- /.image -->

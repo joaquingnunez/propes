@@ -98,7 +98,9 @@ function InitMap() {
                     <div class="preview">
                     <% if @publicacion.largeImage != nil %>
                         <%= image_tag @publicacion.largeImage, :alt => "" %> 
-                        <% end %>
+                    <% else %>
+                    <%= image_tag "no-image.gif" %>
+                     <% end %>
                     </div><!-- /.preview -->
 
                     <div class="content">

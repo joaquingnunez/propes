@@ -153,6 +153,9 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.0.0)
+    ransack_simple_form (0.1.2)
+      ransack (>= 1.1)
+      simple_form (>= 3.0)
     rdoc (4.1.1)
       json (~> 1.4)
     ref (1.0.5)
@@ -235,6 +238,7 @@ DEPENDENCIES
   rails (= 4.0.3)
   rails_12factor
   ransack
+  ransack_simple_form
   rmagick
   sass-rails (~> 4.0.0)
   sdoc

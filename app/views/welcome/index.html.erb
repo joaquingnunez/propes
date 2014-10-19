@@ -62,16 +62,15 @@
                 <div class="span3">
                     <div class="property-filter">
                         <div class="content">
-                            <form method="get" action="http://html.realia.byaviators.com/index-slider.html?">
+                        <%= simple_form_for :searchParams, :url => url_for(:action => 'search', 
+                            :controller => 'publicacions'),
+    :method => 'post' do |f| %>
                                 <div class="location control-group">
                                     <label class="control-label" for="inputLocation">
                                         Comuna
                                     </label>
                                     <div class="controls">
-                                        <select id="inputLocation">
-                                            <option id="malibu">Santiago</option>
-                                            <option id="palo-alto">Viña del Mar</option>
-                                        </select>
+                                        <%= f.input :ciudad_eq, collection: [ "Puerto Montt", "Viña Del Mar", "Valparaiso"], label: false %>
                                     </div><!-- /.controls -->
                                 </div><!-- /.control-group -->
 
@@ -80,22 +79,16 @@
                                         Tipo
                                     </label>
                                     <div class="controls">
-                                        <select id="inputType">
-                                            <option id="apartment">Departamento</option>
-                                            <option id="condo">Casa</option>
-                                        </select>
+                                        <%= f.input :tipo_eq, collection: [ "Departamento", "Casa", "Pension", "Departamento Compartido"], label: false %>
                                     </div><!-- /.controls -->
                                 </div><!-- /.control-group -->
 
                                 <div class="beds control-group">
                                     <label class="control-label" for="inputBeds">
-                                        Piezas
+                                        Dormitorios
                                     </label>
                                     <div class="controls">
-                                        <select id="inputBeds">
-                                            <option id="1">1</option>
-                                            <option id="2">2</option>
-                                        </select>
+                                        <%= f.input :pieza_eq, collection: 1..4, label: false %>
                                     </div><!-- /.controls -->
                                 </div><!-- /.control-group -->
 
@@ -104,27 +97,7 @@
                                         Baños
                                     </label>
                                     <div class="controls">
-                                        <select id="inputBaths">
-                                            <option id="11">1</option>
-                                            <option id="22">2</option>
-                                        </select>
-                                    </div><!-- /.controls -->
-                                </div><!-- /.control-group -->
-
-
-                                <div class="rent control-group">
-                                    <div class="controls">
-                                        <label class="checkbox" for="inputRent">
-                                            <input type="checkbox" id="inputRent"> Renta
-                                        </label>
-                                    </div><!-- /.controls -->
-                                </div><!-- /.control-group -->
-
-                                <div class="sale control-group">
-                                    <div class="controls">
-                                        <label class="checkbox" for="inputSale">
-                                            <input type="checkbox" id="inputSale"> Venta
-                                        </label>
+                                        <%= f.input :bano_eq, collection: 1..3, label: false %>
                                     </div><!-- /.controls -->
                                 </div><!-- /.control-group -->
 
@@ -133,7 +106,7 @@
                                         Price from
                                     </label>
                                     <div class="controls">
-                                        <input type="text" id="inputPriceFrom" name="inputPriceFrom">
+                                          <%= f.input :precio_gteq, input_html: { id: 'inputPriceFrom', name: 'inputPriceFrom' } %>
                                     </div><!-- /.controls -->
                                 </div><!-- /.control-group -->
 
@@ -142,7 +115,7 @@
                                         Price to
                                     </label>
                                     <div class="controls">
-                                        <input type="text" id="inputPriceTo" name="inputPriceTo">
+                                        <%= f.input :precio_lteq, input_html: { id: 'inputPriceTo', name: 'inputPriceTo' } %>
                                     </div><!-- /.controls -->
                                 </div><!-- /.control-group -->
 
@@ -154,11 +127,11 @@
 
                                 <div class="price-slider">
                                 </div><!-- /.price-slider -->
-
+                                
                                 <div class="form-actions">
-                                    <input type="submit" value="Buscar Ahora!" class="btn btn-primary btn-large">
+                                    <%= f.button :submit, "Buscar Ahora!", class: "btn btn-primary btn-large" %>
                                 </div><!-- /.form-actions -->
-                            </form>
+                            <% end %>
                         </div><!-- /.content -->
                     </div><!-- /.property-filter -->
 

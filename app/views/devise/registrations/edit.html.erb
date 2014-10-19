@@ -25,8 +25,6 @@
   <div><%= f.submit "Actualizar Cuenta" %></div>
 <% end %>
 
-<h3>Cancelar mi cuenta</h3>
+<h3>Eliminar mi Cuenta</h3>
 
-<p><%= button_to "Cancelar mi cuenta", registration_path(resource_name), :data => { :confirm => "¿Estás seguro?" }, :method => :delete %></p>
-
-<%= link_to "Volver", :back %>
+<p><%= button_to "Eliminar", registration_path(resource_name), :data => { :confirm => "¿Estás seguro?" }, :method => :delete %></p>

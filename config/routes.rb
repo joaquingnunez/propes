@@ -1,6 +1,7 @@
 Propest::Application.routes.draw do
   resources :publicacions do
     get 'search', on: :collection
+    post 'search', on: :collection
     post 'cambiar_estado', on: :collection
   end
 
