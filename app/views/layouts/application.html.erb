@@ -88,10 +88,6 @@
                                             <div class="site-email">
                                                 <%= mail_to "info@propest.com" %>
                                             </div><!-- /.site-email -->
-
-                                            <div class="site-phone">
-                                                <span>+569-8158-5002</span>
-                                            </div><!-- /.site-phone -->
                                         </div><!-- /.info -->
                                         <% if user_signed_in? %>
                                         <%=link_to "Publicar Nueva Propiedad",new_publicacion_path, { :class=>"btn btn-primary btn-large list-your-property arrow-right" }%>
@@ -112,34 +108,17 @@
                         <div class="navigation clearfix-normal">
 
                             <ul class="nav">
-                                <li class="menuparent">
-                                    <span class="menuparent nolink">Homepage</span>
-                                    <ul>
-                                        <li><a href="index-slider.html">Homepage with slider</a></li>
-                                        <li><a href="index-2.html">Homepage with map</a></li>
-                                        <li><a href="index-simple.html">Simple homepage</a></li>
-                                        <li><a href="index-carousel.html">Homepage with carousel</a></li>
-                                    </ul>
-                                </li>
                                 <% if user_signed_in? %>
                                 <li><%= link_to "Gestionar Propiedades", publicacions_path %></li>
                                 <% end %>
                                 <li class="menuparent">
+                                <% if user_signed_in? %>
                                     <span class="menuparent nolink">Mi Cuenta</span>
                                     <ul>
                                         <li><%= link_to "Editar Cuenta", edit_user_registration_path %></li>
-                                        <li><a href="faq.html">FAQ</a></li>
                                     </ul>
+                                <% end %>
                                 </li>
-                                <li class="menuparent">
-                                    <span class="menuparent nolink">Pricing</span>
-                                    <ul>
-                                        <li><a href="pricing-boxed.html">Boxed pricing</a></li>
-                                        <li><a href="pricing-multiple.html">Multiple pricing</a></li>
-                                        <li><a href="pricing-simple.html">Simple Pricing</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
                             </ul><!-- /.nav -->
 
                             <div class="language-switcher">
