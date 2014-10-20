@@ -177,26 +177,26 @@ function InitAccordion() {
 }
 
 function InitPriceSlider() {
-    jQuery('.price-value .from').text(10);
-    jQuery('.price-value .from').currency({ region: 'UF', thousands: '.', decimal: ',', decimals: 0 });
+    jQuery('.price-value .from').text(50000);
+    jQuery('.price-value .from').currency({ region: 'NAD', thousands: '.', decimal: ',', decimals: 0 });
 
-    jQuery('.price-value .to').text(5000);
-    jQuery('.price-value .to').currency({ region: 'UF', thousands: '.', decimal: ',', decimals: 0 });
+    jQuery('.price-value .to').text(1000000);
+    jQuery('.price-value .to').currency({ region: 'NAD', thousands: '.', decimal: ',', decimals: 0 });
 
     $('.property-filter .price-slider').slider({
         range: true,
-        min: 10,
-        max: 5000,
-        values: [10, 5000],
+        min: 50000,
+        max: 1000000,
+        values: [50000, 1000000],
         slide: function(event, ui) {
             jQuery('.property-filter .price-from input').attr('value', ui.values[0]);
             jQuery('.property-filter .price-to input').attr('value', ui.values[1]);
 
             jQuery('.price-value .from').text(ui.values[0]);
-            jQuery('.price-value .from').currency({ region: 'UF', thousands: '.', decimal: ',', decimals: 0 });
+            jQuery('.price-value .from').currency({ region: 'NAD', thousands: '.', decimal: ',', decimals: 0 });
 
             jQuery('.price-value .to').text(ui.values[1]);
-            jQuery('.price-value .to').currency({ region: 'UF', thousands: '.', decimal: ',', decimals: 0 });
+            jQuery('.price-value .to').currency({ region: 'NAD', thousands: '.', decimal: ',', decimals: 0 });
         }
     });
 }
