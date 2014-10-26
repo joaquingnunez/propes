@@ -22,7 +22,7 @@ gem 'nested_form'
 gem "ransack"
 gem 'ransack_simple_form'
 gem 'kaminari'
-gem 'rails_12factor', group: :production
+#gem 'rails_12factor', group: :production
 gem 'progress_bar'
 gem 'twitter'
 gem 'bitly'
