@@ -34,7 +34,7 @@ class PublicacionsController < ApplicationController
       if @publicacion.save
         bitly = Bitly.client
         bitId = 2
-        link = bitly.shorten("http://hardy.herokuapp.com/publicacions/#{bitId}").short_url
+        link = bitly.shorten("http://propes.herokuapp.com/publicacions/#{bitId}").short_url
         client=@publicacion.twitter
         client.update("#{@publicacion.titulo}, #{@publicacion.ciudad}, Precio: #{@publicacion.precio}. Conocela: #{link}")
         format.html { redirect_to @publicacion }
